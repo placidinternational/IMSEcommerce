@@ -1,0 +1,102 @@
+﻿namespace IMSBackend.Common.Extensions;
+public static class CurrencySymbolHelper
+{
+    public static string CurrencySymbol(string currency)
+    {
+        switch (currency)
+        {
+            case "USD":
+                return "$";
+            case "NGN":
+                return "₦";
+            case "GBP":
+                return "£";
+            case "EUR":
+                return "€";
+            case "GHS":
+                return "GH₵";
+            case "KES":
+                return "Ksh";
+            case "ZAR":
+                return "R";
+            case "XOF":
+                return "CFA";
+            case "XAF":
+                return "CFA";
+            case "RWF":
+                return "RF";
+            case "TZS":
+                return "Tsh";
+            case "UGX":
+                return "Ush";
+            case "ZMW":
+                return "ZK";
+            case "MAD":
+                return "DH";
+            case "KWD":
+                return "KD";
+            case "AED":
+                return "DH";
+            case "SAR":
+                return "SR";
+            case "QAR":
+                return "QR";
+            case "OMR":
+                return "RO";
+            case "BHD":
+                return "BD";
+            case "JOD":
+                return "JD";
+            case "LBP":
+                return "LL";
+            case "EGP":
+                return "E£";
+            case "SYP":
+                return "LS";
+            case "YER":
+                return "YR";
+            case "IQD":
+                return "ID";
+            case "LYD":
+                return "LD";
+            case "SDG":
+                return "SDG";
+            case "TND":
+                return "DT";
+            case "DZD":
+                return "DA";
+            case "MRO":
+                return "UM";
+            case "MRU":
+                return "UM";
+            case "CVE":
+                return "Esc";
+            case "GMD":
+                return "D";
+            case "GIP":
+                return "£";
+            case "FKP":
+                return "£";
+            case "SHP":
+                return "£";
+            case "JEP":
+                return "£";
+            case "GGP":
+                return "£";
+            case "IMP":
+                return "£";
+            case "BMD":
+                return "$";
+            case "BBD":
+                return "$";
+            case "BSD":
+                return "$";
+            case "BZD":
+                return "";
+            case "CAD":
+                return "C$";
+            default:
+                return currency;
+        }
+    }
+}

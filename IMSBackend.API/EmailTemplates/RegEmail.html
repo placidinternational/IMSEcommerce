@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nominee Registration Confirmation</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: #f6f8fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-wrapper {
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .email-content {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        p {
+            color: #555555;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #0D3880;
+            color: #ffffff !important;
+            padding: 12px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .details {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #fff;
+            margin-top: 30px;
+            padding: 5px;
+            background-color: #0D3880;
+            font-weight: 800;
+            font-size: 80%;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+        <div class="email-content">
+            <h1>Welcome to the [Award Name]! 🎉</h1>
+            <p>Dear <strong>${fullname}</strong>,</p>
+
+            <p>We are excited to inform you that your nomination for the <strong>${nomination}</strong> has been successfully received. You are one step closer to being recognized among the most outstanding individuals in your category.</p>
+
+            <div class="details">
+                <p><strong>Nominee Details:</strong></p>
+                <p>
+                    Full Name: ${fullname}<br>
+                    Category: ${category}<br>
+                    Nominee ID: ${Id}<br>
+                    Registered Email: ${email}
+                </p>
+            </div>
+
+            <h3>✅ What Happens Next?</h3>
+            <p>Check the voting page for your  live profile on the public voting page</p>
+
+            <p>You can access your private dashboard using the link below to monitor your vote count and manage your profile:</p>
+
+            <p><a href="ims.com" class="button">Login to Dashboard</a></p>
+
+            <h3>🗳 Voting Starts Soon!</h3>
+            <p>Once verified, your supporters can begin voting for you. Remember: each vote costs ₦50, and you can track all votes in your dashboard in real time.</p>
+
+            <p>If you have any questions, feel free to reach out to us at <a href="mailto:info@ims.com">[Support Email]</a>.</p>
+
+            <p>
+                We’re rooting for you!<br><br>
+                Warm regards,<br>
+                <strong>The IMS Team</strong><br>
+                <div class="footer">
+                    &copy; 2025 IMS. All rights reserved.
+                </div>
+        </div>
+    </div>
+</body>
+</html>

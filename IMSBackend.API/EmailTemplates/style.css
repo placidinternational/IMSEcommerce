@@ -1,0 +1,22 @@
+
+body{
+    margin-top: 80px !important;
+}
+
+p {
+    margin : 8px 0px;
+}
+
+td.footer p{margin : 0px 0px !important; font-size: 0.5em;}
+
+.prop{
+    width: 250px;
+    font-size: 0.8em;
+}
+.header1{width: 250px;background-color: #db251c !important;color: white;padding: 10px;}
+.header2{ width: 200px;background-color: #db251c ! important;color: white;padding: 10px;}
+
+
+tr#bizName{  line-height:50px;}
+.footer{ margin-top: 40px; line-height:20px; background-color:#F5F5F5 }
+p#lastFooter{font-size: 0.8em;font-weight: bold;}

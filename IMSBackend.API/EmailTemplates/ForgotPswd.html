@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email_template for Placid</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: auto;
+            background-color: #f1f2f6;
+            margin: auto;
+            box-shadow: 5px 10px 14px #aa4748;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 50px;
+        }
+
+        address {
+            padding: 15px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 80%;
+        }
+
+        .top img {
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+        }
+
+        .contp {
+            width: 98%;
+            padding: 10px;
+            font-weight: 300;
+            font-size: 80%;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .contact_info {
+            background-color: #0D3880;
+            color: #fff;
+            padding: 5px;
+            font-weight: 800;
+            font-size: 80%;
+        }
+
+        .download h2 {
+            background-color: #aa4748;
+            padding: 15px;
+            font-weight: 800;
+            font-size: 97%;
+            text-align: center;
+        }
+
+        .download ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        li img {
+            width: 100px;
+            margin: auto;
+        }
+
+        .contact_info p {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .imag img {
+            height: 99%;
+            position: absolute;
+            right: 13px;
+            top: 30px;
+        }
+
+        @media only screen and (max-width: 992px) {
+            .top img, .content {
+                width: 100%
+            }
+
+            .imag img {
+                display: none;
+                border-radius: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <div class="container">
+            <div class="">
+                <div class="">
+                    <img src="https://placid.ng/images/placid-logo.png" alt="logo">
+                </div>
+                <div class="address">
+                    <address>Simplify Business, Empower Growth, Anywhere.</address>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="contp">
+
+
+                    <h4>Hello <span style="color:#aa4748; text-shadow: 2px 2px 5px;">${email}</span></h4>
+                    <p>
+                        We received a request to reset the password for your account, Use the details below to reset your account
+                    </p>
+                    <p> Password : <span style="color:#aa4748; text-shadow: 2px 2px 5px;">${password}</span></p>
+                    <br />
+                </div>
+
+            </div>
+
+            <div class="contact_info">
+                <p>info@placid.ng</p>
+                <p>+234 810 181 4885</p>
+                <p>www.placid.ng</p>
+                <br />
+                <div class="address">
+                    <address>Seamless Sales, Smart Management, Anywhere You Go.</address>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
