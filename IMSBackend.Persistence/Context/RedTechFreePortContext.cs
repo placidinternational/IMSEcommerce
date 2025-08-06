@@ -13,6 +13,7 @@ namespace IMSBackend.Persistence.Context
         public DbSet<ForgotPasswordOtp> ForgotPasswordOtps { get; set; }
         public DbSet<RegistrationOtp> RegistrationOtps { get; set; }
         public DbSet<Nominee> Nominees { get; set; }
+        public DbSet<Vote> Votes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Category>().HasData(new Category
             {

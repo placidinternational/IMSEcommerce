@@ -64,6 +64,8 @@ public class UnitOfWork : IUnitOfWork
             return _nomineeRepository;
         }
     }
+
+
     private ICategoryRepository _categoryRepository;
     public ICategoryRepository CategoryRepository
     {
@@ -74,6 +76,19 @@ public class UnitOfWork : IUnitOfWork
                 _categoryRepository = new CategoryRepository(_dbContext);
             }
             return _categoryRepository;
+        }
+    }
+
+    private IVoteRepository _voteRepository;
+    public IVoteRepository VoteRepository
+    {
+        get
+        {
+            if (_voteRepository == null)
+            {
+                _voteRepository = new VoteRepository(_dbContext);
+            }
+            return _voteRepository;
         }
     }
     public async Task<int> Save(CancellationToken cancellationToken)

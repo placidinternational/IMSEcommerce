@@ -36,10 +36,10 @@ namespace IMSBackend.Infrastructure.EmailService
                     var placeHolders = new Dictionary<string, string>
                     {
                         {"${email}",email},
-                        {"${Fullname}", Fullname},
-                        {"${Phonenumber}", phone },
+                        {"${fullname}", Fullname},
+                        {"${phonenumber}", phone },
                         {"${nomineeid}", nomineeid },
-                        {"${awardname}", awardname },
+                        {"${category}", awardname },
                         
                     };
                     string bodyy = ParseEmail(placeHolders, HTMLBody);

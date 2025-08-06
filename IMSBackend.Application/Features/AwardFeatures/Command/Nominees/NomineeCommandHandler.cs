@@ -71,8 +71,10 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Nominees
 
                 });
                 await _unitOfWork.Save(cancellationToken);
+
+                var categoryName =await _unitOfWork.CategoryRepository.GetByIdAsync(request.CategoryId, cancellationToken);
                 //Send email to user
-                await _jobTestService.SendWelcomeEmail(request.EmailAddress, request.FullName, request.PhoneNumber, NomineeCode, request.CompanyName);
+                await _jobTestService.SendWelcomeEmail(request.EmailAddress, request.FullName, request.PhoneNumber, NomineeCode, categoryName.Name);
 
                 return await Result<string>.SuccessAsync($"Account created successfully {createUser.Id}");
             }

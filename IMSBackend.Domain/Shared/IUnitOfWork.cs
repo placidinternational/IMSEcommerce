@@ -9,5 +9,6 @@ public interface IUnitOfWork : IDisposable
     IForgotPasswordOtpRepository ForgotPasswordOtpRepository { get; }
     INomineeRepository NomineeRepository { get; }
     ICategoryRepository CategoryRepository { get; }
+    IVoteRepository VoteRepository { get; }
     Task<int> Save(CancellationToken cancellationToken);
 }

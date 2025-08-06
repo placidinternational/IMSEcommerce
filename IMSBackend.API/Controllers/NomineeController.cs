@@ -20,7 +20,6 @@ namespace IMSBackend.API.Controllers
             _userService = userService;
         }
 
-
         /// <summary>
         /// This is the endpoint to create nominee account 
         /// </summary>
