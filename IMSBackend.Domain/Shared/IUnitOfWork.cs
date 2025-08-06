@@ -8,5 +8,6 @@ public interface IUnitOfWork : IDisposable
     IRegistrationOtpRepository RegistrationOtpRepository { get; }
     IForgotPasswordOtpRepository ForgotPasswordOtpRepository { get; }
     INomineeRepository NomineeRepository { get; }
+    ICategoryRepository CategoryRepository { get; }
     Task<int> Save(CancellationToken cancellationToken);
 }

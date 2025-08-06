@@ -6,19 +6,19 @@ using IMSBackend.Domain.Shared;
 using MediatR;
 using System.Text.RegularExpressions;
 
-namespace IMSBackend.Application.Features.AwardFeatures.Command
+namespace IMSBackend.Application.Features.AwardFeatures.Command.Nominees
 {
     public class NomineeCommandHandler : IRequestHandler<NomineeCommand, Result<string>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IJobTestService _jobTestService;
-       
+
 
         public NomineeCommandHandler(IUnitOfWork unitOfWork, IJobTestService jobTestService)
         {
             _unitOfWork = unitOfWork;
             _jobTestService = jobTestService;
-            
+
         }
         public async Task<Result<string>> Handle(NomineeCommand request, CancellationToken cancellationToken)
         {
@@ -32,7 +32,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command
                     return await Result<string>.FailureAsync("Invalid Email Address");
                 }
 
-                var CheckEmail = await _unitOfWork.AccountRepository.GetSingleByExpression(x => x.EmailAddress ==request.EmailAddress, cancellationToken);
+                var CheckEmail = await _unitOfWork.AccountRepository.GetSingleByExpression(x => x.EmailAddress == request.EmailAddress, cancellationToken);
 
                 if (CheckEmail is not null)
                 {
@@ -50,22 +50,23 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command
                     UserType = UserTypeEnum.Nominee,
                     StatusEnum = StatusEnum.Active,
                     Address = request.Address,
+                    PhoneNumber = request.PhoneNumber,
                 });
                 await _unitOfWork.Save(cancellationToken);
 
-                if (createUser is  null)
+                if (createUser is null)
                 {
                     return await Result<string>.FailureAsync("fail to create");
                 }
                 string NomineeCode = Guid.NewGuid().ToString("N").Substring(0, 6).ToUpper();
-                await _unitOfWork.NomineeRepository.AddAsync(new Domain.Entities.Award.Nominee
+                await _unitOfWork.NomineeRepository.AddAsync(new Nominee
                 {
                     Biography = request.Biography,
                     AccountId = createUser.Id,
                     Picture = request.Picture,
-                    Logo= request.Logo,
+                    Logo = request.Logo,
                     CompanyName = request.CompanyName,
-                    CategoryId =request.CategoryId,
+                    CategoryId = request.CategoryId,
                     NomineeCode = NomineeCode,
 
                 });

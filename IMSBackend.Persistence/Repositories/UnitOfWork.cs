@@ -64,6 +64,18 @@ public class UnitOfWork : IUnitOfWork
             return _nomineeRepository;
         }
     }
+    private ICategoryRepository _categoryRepository;
+    public ICategoryRepository CategoryRepository
+    {
+        get
+        {
+            if (_categoryRepository == null)
+            {
+                _categoryRepository = new CategoryRepository(_dbContext);
+            }
+            return _categoryRepository;
+        }
+    }
     public async Task<int> Save(CancellationToken cancellationToken)
     {
         return await _dbContext.SaveChangesAsync(cancellationToken);

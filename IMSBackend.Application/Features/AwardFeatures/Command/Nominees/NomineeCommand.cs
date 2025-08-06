@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMSBackend.Application.Features.AwardFeatures.Command
+namespace IMSBackend.Application.Features.AwardFeatures.Command.Nominees
 {
     public class NomineeCommand : IRequest<Result<string>>
     {

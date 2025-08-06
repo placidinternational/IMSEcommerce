@@ -100,15 +100,15 @@ public class AccountController : BaseController
     }
 
     /// <summary>
-    /// This is the endpoint to create nominee account 
+    /// This is the endpoint to create user account 
     /// </summary>
     /// <param name="requestModel"></param>
     /// <returns></returns>
     [AllowAnonymous]
     [HttpPost]
-    [Route("RegisterNominee")]
+    [Route("Register")]
     [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> Register(NomineeCommand requestModel)
+    public async Task<IActionResult> Register(CreateAuthCommand requestModel)
     {
         var userResult = await Sender.Send(requestModel);
 
