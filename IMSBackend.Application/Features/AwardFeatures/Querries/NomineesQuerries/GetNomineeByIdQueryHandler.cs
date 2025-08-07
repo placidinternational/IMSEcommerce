@@ -24,7 +24,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.NomineesQuerrie
         {
             try
             {
-                var query = await _unitOfWork.NomineeRepository.GetQueryable().Include(x => x.Account).Where(x => x.Account.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
+                var query = await _unitOfWork.NomineeRepository.GetQueryable().Include(x => x.Account).Include(x=>x.Category) .Where(x => x.Account.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
 
                 if (query is null)
                 {
@@ -45,6 +45,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.NomineesQuerrie
                     CompanyName = query.CompanyName,
                     NomineeCode = query.NomineeCode,
                     Picture = query.Picture,
+                    Category = query.Category.Name,
                 };
 
                 return await Result<NomineeResponse>.SuccessAsync(Nominee, "Fetched successfully");

@@ -9,7 +9,7 @@ namespace IMSBackend.Common.Enums
     public enum TransactionEnum
     {
         Successful = 1,
-        Progress = 2,
+        incomplete = 2,
         Failed = 3,
     }
 }

@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Application.Features.AwardFeatures.Command.Voting
 {
-    public record CastVoteCommand(Guid NomineeId, int Quantity, string VoterEmail, string VoterName) : IRequest<Result<string>>;
+    public record CastVoteCommand(Guid NomineeId, int Quantity, string VoterEmail, string VoterName, string ReferenceNumber) : IRequest<Result<string>>;
 }

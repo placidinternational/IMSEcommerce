@@ -27,6 +27,7 @@ public static class IServiceCollectionExtensions
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IJobTestService, JobTestService>();
         services.AddScoped<IJWTService, JWTService>();
+        services.AddScoped<IPaymentService, PaymentService>();
         return services;
     }
 

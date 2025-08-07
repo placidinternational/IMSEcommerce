@@ -10,5 +10,6 @@ public interface IUnitOfWork : IDisposable
     INomineeRepository NomineeRepository { get; }
     ICategoryRepository CategoryRepository { get; }
     IVoteRepository VoteRepository { get; }
+    IPaymentRepository PaymentRepository { get; }
     Task<int> Save(CancellationToken cancellationToken);
 }

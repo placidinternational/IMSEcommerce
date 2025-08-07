@@ -91,6 +91,18 @@ public class UnitOfWork : IUnitOfWork
             return _voteRepository;
         }
     }
+    private IPaymentRepository _paymentRepository;
+    public IPaymentRepository PaymentRepository
+    {
+        get
+        {
+            if (_paymentRepository == null)
+            {
+                _paymentRepository = new PaymentRepository(_dbContext);
+            }
+            return _paymentRepository;
+        }
+    }
     public async Task<int> Save(CancellationToken cancellationToken)
     {
         return await _dbContext.SaveChangesAsync(cancellationToken);

@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using IMSBackend.Infrastructure.EmailService;
 using IMSBackend.Common.Models;
 using IMSBackend.Infrastructure.Settings;
-using IMSBackend.Infrastucture.Settings;
 using IMSBackend.Persistence.Extentions;
 using IMSBackend.Infrastructure.MediaUploadIntegration;
 using IMSBackend.Infrastrusture.MediaUploadIntegration;
@@ -33,9 +32,6 @@ public static class IServiceCollectionExtensions
 
         services.AddOptions<TwiloSettings>()
             .BindConfiguration(nameof(TwiloSettings));
-
-        services.AddOptions<RedPaySettings>()
-            .BindConfiguration(nameof(RedPaySettings));
 
         services.AddOptions<CloudinarySettings>()
          .BindConfiguration(nameof(CloudinarySettings));
