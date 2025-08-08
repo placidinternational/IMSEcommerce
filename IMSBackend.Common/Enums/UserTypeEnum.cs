@@ -10,6 +10,6 @@ namespace IMSBackend.Common.Enums
     {
         Nominee =1,
         Admin = 2,
-        Support = 3
+        Pitch = 3
     }
 }

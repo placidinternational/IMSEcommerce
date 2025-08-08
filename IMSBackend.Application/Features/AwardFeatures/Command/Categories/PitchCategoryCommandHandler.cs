@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Application.Features.AwardFeatures.Command.Categories
 {
-    public class CategoryCommandHandler : IRequestHandler<CategoryCommand, Result<string>>
+    public class PitchCategoryCommandHandler : IRequestHandler<PitchCategoryCommand, Result<string>>
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryCommandHandler(IUnitOfWork unitOfWork)
+        public PitchCategoryCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<Result<string>> Handle(CategoryCommand request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(PitchCategoryCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -25,6 +25,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Categories
                 var category = await _unitOfWork.CategoryRepository.AddAsync(new Domain.Entities.Award.Category
                 {
                     Name = request.Name,
+                    Pitch = true,
                 });
                 await _unitOfWork.Save(cancellationToken);
 
@@ -38,7 +39,6 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Categories
             {
                 return await Result<string>.FailureAsync("error occured");
             }
-
         }
     }
 }

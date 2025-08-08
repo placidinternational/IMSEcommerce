@@ -10,5 +10,7 @@ namespace IMSBackend.Domain.Entities.Award
     public class Category : BaseEntity
     {
         public string Name { get; set; }
+        public bool Award { get; set; }
+        public bool Pitch { get; set; }
     }
 }

@@ -103,6 +103,32 @@ public class UnitOfWork : IUnitOfWork
             return _paymentRepository;
         }
     }
+
+    private IBusinessPitchRepository _businessPitchRepository;
+    public IBusinessPitchRepository BusinessPitchRepository
+    {
+        get
+        {
+            if (_businessPitchRepository == null)
+            {
+                _businessPitchRepository = new BusinessPitchRepository(_dbContext);
+            }
+            return _businessPitchRepository;
+        }
+    }
+
+    private IBusinessPictchPriceRepository _businessPictchPriceRepository;
+    public IBusinessPictchPriceRepository BusinessPictchPriceRepository
+    {
+        get
+        {
+            if (_businessPictchPriceRepository == null)
+            {
+                _businessPictchPriceRepository = new BusinessPictchPriceRepository(_dbContext);
+            }
+            return _businessPictchPriceRepository;
+        }
+    }
     public async Task<int> Save(CancellationToken cancellationToken)
     {
         return await _dbContext.SaveChangesAsync(cancellationToken);

@@ -13,13 +13,31 @@ namespace IMSBackend.API.Controllers
     {
 
         /// <summary>
-        /// This is the endpoint to create category 
+        /// This is the endpoint to create award category 
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Register(CategoryCommand requestModel)
+        public async Task<IActionResult> Register(AwardCategoryCommand requestModel)
+        {
+            var userResult = await Sender.Send(requestModel);
+
+            if (userResult.Succeeded == false)
+                return BadRequest(userResult);
+            else
+                return Ok(userResult);
+        }
+
+
+        /// <summary>
+        /// This is the endpoint to create pitch category 
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [HttpPost("RegisterPitch")]
+        [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> RegisterPitch(PitchCategoryCommand requestModel)
         {
             var userResult = await Sender.Send(requestModel);
 

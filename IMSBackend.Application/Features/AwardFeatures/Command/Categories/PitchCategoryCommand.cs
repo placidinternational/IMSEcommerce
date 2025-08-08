@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Application.Features.AwardFeatures.Command.Categories
 {
-    public class CategoryCommand : IRequest<Result<string>>
+    public class PitchCategoryCommand : IRequest<Result<string>>
     {
         public string Name { get; set; }
     }
