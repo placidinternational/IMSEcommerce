@@ -14,7 +14,10 @@ namespace IMSBackend.Domain.Entities.Award
         public Category Category { get; set; }
         public Guid CategoryId { get; set; }
         public string NomineeCode { get; set; }
+        public bool IsActive { get; set; }
+        
         public ICollection<Vote> Votes { get; set; } = new List<Vote>();
 
     }
+
 }
