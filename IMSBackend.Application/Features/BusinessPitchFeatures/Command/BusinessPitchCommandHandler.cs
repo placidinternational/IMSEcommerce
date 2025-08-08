@@ -37,7 +37,7 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
                 string password = Guid.NewGuid().ToString("N").Substring(0, 6).ToUpper();
                 byte[] passwordHash, passwordSalt;
                 CreatePasswordHash(password, out passwordHash, out passwordSalt);
-                var createUser = await _unitOfWork.AccountRepository.AddAsync(new Domain.Entities.Account.Account
+                var pitch = await _unitOfWork.AccountRepository.AddAsync(new Domain.Entities.Account.Account
                 {
                     PasswordHashed = passwordHash,
                     PasswordSalt = passwordSalt,
@@ -50,14 +50,13 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
                 });
                 await _unitOfWork.Save(cancellationToken);
 
-                if (createUser is null)
+                if (pitch is null)
                 {
                     return await Result<string>.FailureAsync("fail to create");
                 }
-                string NomineeCode = Guid.NewGuid().ToString("N").Substring(0, 6).ToUpper();
                 await _unitOfWork.BusinessPitchRepository.AddAsync(new BusinessPitch
                 {
-                    AccountId = createUser.Id,
+                    AccountId = pitch.Id,
                     OwnersPicture = cmd.Request.Picture,
                     BusinessLogo = cmd.Request.Logo,
                     BusinessName = cmd.Request.BusinessName,
@@ -70,7 +69,7 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
                 //Send email to user
                 //await _jobTestService.SendWelcomeEmail(request.EmailAddress, request.FullName, request.PhoneNumber, NomineeCode, categoryName.Name);
 
-                return await Result<string>.SuccessAsync($"Account created successfully {createUser.Id}");
+                return await Result<string>.SuccessAsync($"Account created successfully {pitch.Id}");
             }
             catch (Exception ex)
             {

@@ -55,7 +55,6 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Voting
                 var castVote = new Vote
                 {
                     NomineeId = cmd.NomineeId,
-                    PaymentId = pay.Id,
                     AmountPaid = payment.amount,
                     VoterEmail = cmd.VoterEmail,
                     VoterName = cmd.VoterName,

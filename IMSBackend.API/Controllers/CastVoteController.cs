@@ -2,6 +2,7 @@
 using IMSBackend.Application.Dtos.Auth.Responses;
 using IMSBackend.Application.Dtos.NewFolder;
 using IMSBackend.Application.Dtos.Nominee.Response;
+using IMSBackend.Application.Dtos.VotingDto;
 using IMSBackend.Application.Features.AuthenticationFeature.Queries;
 using IMSBackend.Application.Features.AwardFeatures.Command.Nominees;
 using IMSBackend.Application.Features.AwardFeatures.Command.Voting;
@@ -117,6 +118,7 @@ namespace IMSBackend.API.Controllers
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet("countbynomineeId")]
         [ProducesResponseType(typeof(Result<VotingResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> countbynomineeId([FromQuery] Guid nomineeId)
@@ -132,6 +134,29 @@ namespace IMSBackend.API.Controllers
             else
                 return Ok(userResult);
         }
+        /// <summary>
+        /// This is the endpoint to get votes nomineeId
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [HttpGet("HomepageVoteMetrics")]
+        [ProducesResponseType(typeof(Result<VotingMetircDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> HomepageVoteMetrics()
+        {
+            var query = new VoteMetricQuery
+            {
+
+            };
+            var userResult = await Sender.Send(query);
+
+            if (userResult.Succeeded == false)
+                return BadRequest(userResult);
+            else
+                return Ok(userResult);
+        }
+
     }
+
 }
 

@@ -25,8 +25,8 @@ namespace IMSBackend.Domain.Entities.Transactions
 
         [Required]
         public string TransactionReference { get; set; }
-        public ICollection<Vote> Vote { get; set; } 
         public string Status { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal AmountExpected { get; set; }
     }
 }

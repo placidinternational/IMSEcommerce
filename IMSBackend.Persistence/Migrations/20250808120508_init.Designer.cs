@@ -4,6 +4,7 @@ using IMSBackend.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IMSBackend.Persistence.Migrations
 {
     [DbContext(typeof(IMSBackendContext))]
-    partial class IMSBackendContextModelSnapshot : ModelSnapshot
+    [Migration("20250808120508_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,286 +248,286 @@ namespace IMSBackend.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("46bf17d0-ce2c-418b-880b-02de93cef3b8"),
+                            Id = new Guid("78b286d7-095c-4e80-a454-f880892215a0"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2766),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2769),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1282),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1285),
                             IsDeleted = false,
                             Name = "African Women’s Fashion Talent of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("3398c49d-0fb5-4817-9969-34c2c6e568a7"),
+                            Id = new Guid("f64f0444-c0d4-4df2-a1b4-762959d5f354"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2808),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2809),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1368),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1369),
                             IsDeleted = false,
                             Name = "Outstanding Fashion Entrepreneur of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("e942057a-bb1f-4b30-b07c-e4a9fb61c101"),
+                            Id = new Guid("6de60535-1ec3-4621-a39b-bbc12ce71899"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2812),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2813),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1373),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1373),
                             IsDeleted = false,
                             Name = "Beauty and Personal Care Entrepreneur of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("aa4bc673-4f30-4d6d-b4b0-535f6157692f"),
+                            Id = new Guid("df8103f6-848c-48b2-abde-c4f1215183ed"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2816),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2816),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1376),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1377),
                             IsDeleted = false,
                             Name = "Outstanding Beverage Brand of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("9a6699d4-a706-4e17-adb5-1f2f49260bf4"),
+                            Id = new Guid("c4e18beb-a302-468b-bac7-8d619c1cec81"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2829),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2829),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1380),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1380),
                             IsDeleted = false,
                             Name = "Top Rated, Dessert and Finger Food",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("28dd89cd-b3b4-45f3-ba71-35f085cb6277"),
+                            Id = new Guid("01ffda8e-784e-41f7-abfa-ad074515ffe9"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2832),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2832),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1383),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1383),
                             IsDeleted = false,
                             Name = "Most Creative Baker",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("230cb77b-a547-4a63-b18a-c216284c6c03"),
+                            Id = new Guid("9eff98ea-d5e1-4a80-9011-c70abbf3faa4"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2835),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2835),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1386),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1387),
                             IsDeleted = false,
                             Name = "Most Innovative Product of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("96d16cf4-5562-4405-a527-b307da3e35a8"),
+                            Id = new Guid("27c303db-cd34-4937-acff-54a1aaab9f69"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2838),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2838),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1389),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1390),
                             IsDeleted = false,
                             Name = "Best Indigenous Snack brand",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("d5cd2ef5-c73d-4571-b3b5-1d702c5fadab"),
+                            Id = new Guid("5dec334b-144c-4372-b474-a8871886094a"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2841),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2841),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1393),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1393),
                             IsDeleted = false,
                             Name = "Outstanding Quality Hair Entrepreneur of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("772857db-dc53-44fb-aa93-75964282fdcf"),
+                            Id = new Guid("a310ad01-cace-4526-9885-e65056283f2d"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2844),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2844),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1400),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1401),
                             IsDeleted = false,
                             Name = "Craft Mastery Award",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("cb89ba7c-fbe4-41b0-822c-74cc12b9d6ce"),
+                            Id = new Guid("70f140f8-20f6-44dd-b508-9f9deed2cb05"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2847),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2847),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1404),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1404),
                             IsDeleted = false,
                             Name = "Best Emerging Food brand of the year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("029f94ba-9c50-4d57-ac9f-17629780bd28"),
+                            Id = new Guid("fbfe531b-65ca-43cf-ad26-b05703fd7298"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2849),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2850),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1407),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1407),
                             IsDeleted = false,
                             Name = "Creative Bridal Hairstylist of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("2aaf17ee-df56-46c9-ab88-8115238bf8a6"),
+                            Id = new Guid("12b8e2da-d52b-4152-8a7a-33a06a68adf6"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2855),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2856),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1410),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1411),
                             IsDeleted = false,
                             Name = "Top Rated, Event Catering Brand",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("d0bc9629-1e2b-4394-9332-761d3fe35448"),
+                            Id = new Guid("2c08af38-128f-44c5-bba0-a1c686d3f546"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2858),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2859),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1413),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1414),
                             IsDeleted = false,
                             Name = "Fastest Growing Perfume Business",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("23a17a4c-b34e-4f3e-9e52-7ce5f4b0cbc2"),
+                            Id = new Guid("10864083-5aa8-4139-aebd-306a9b517224"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2861),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2862),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1417),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1417),
                             IsDeleted = false,
                             Name = "Outstanding Female Fashion Designer of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("5ecb05e7-7dcb-418a-bfdd-9ab09b9756ed"),
+                            Id = new Guid("26c6f3e3-9926-4ea8-beba-95d81fb0bade"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2864),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2864),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1420),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1420),
                             IsDeleted = false,
                             Name = "Outstanding Fenalr Entrepreneur in Agro-Retail",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("3d706d9a-738c-4386-8d39-a64bed2e8e82"),
+                            Id = new Guid("6f51e185-e78a-45ab-b419-fc07a20de354"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2867),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2867),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1423),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1424),
                             IsDeleted = false,
                             Name = "Textile Manufacturing Brand of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("18f5f143-ec8e-4001-ba67-2ce9f01218ca"),
+                            Id = new Guid("8a3aefe1-6830-4948-a99d-37bdef65e110"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2870),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2870),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1430),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1430),
                             IsDeleted = false,
                             Name = "Outstanding Female Entrepreneur of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("2e6f7d69-a944-4498-91f5-973292be5a6f"),
+                            Id = new Guid("661fb8da-da25-4aa9-b3a6-e9266c50d2a0"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2872),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2873),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1433),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1433),
                             IsDeleted = false,
                             Name = "Fabric Vendor of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("200f069a-a43d-4503-8e0c-aedf95eadc70"),
+                            Id = new Guid("d9721ba0-52e0-4436-b51b-c144c098287d"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2875),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2876),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1436),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1436),
                             IsDeleted = false,
                             Name = "Best Emerging Entrepreneur of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("dafccfde-e3c8-4806-97ea-b8781f656ec1"),
+                            Id = new Guid("50e63d5c-3324-47d1-b6dc-f4e4a6aac065"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2891),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2891),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1439),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1440),
                             IsDeleted = false,
                             Name = "Best Emerging Fashion Retail Brand of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("79605358-ccab-4eb3-ab99-e52f04dcbe06"),
+                            Id = new Guid("10dbfde8-b914-41a1-99d9-e14398c1deb0"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2894),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2894),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1442),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1443),
                             IsDeleted = false,
                             Name = "Outstanding Full-Service Beauty SPA",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("932842e1-b3ef-4272-81dd-355642e03f97"),
+                            Id = new Guid("f539d32b-8e39-40fe-b1f7-5910d45e9308"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2896),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2897),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1446),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1446),
                             IsDeleted = false,
                             Name = "Media and Entertainment Brand of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("7e70401b-71f0-4de6-9f2e-77e87cbd5109"),
+                            Id = new Guid("e9ede2c7-7e24-4dde-a1a8-a6e7d904b2ea"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2899),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2899),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1449),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1449),
                             IsDeleted = false,
                             Name = "Creative Branding and Printing Excellence",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("a2f8ab18-16dd-4a35-8182-5530e6afafb7"),
+                            Id = new Guid("b9989359-33d2-4e09-b125-296ec312680f"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2902),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2902),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1452),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1452),
                             IsDeleted = false,
                             Name = "Health and Wellness Brand of the Year",
                             Pitch = false
                         },
                         new
                         {
-                            Id = new Guid("40a8bc6b-e935-412d-a8b5-2b0ea0a28fc4"),
+                            Id = new Guid("8e49843f-aab0-4bac-bed2-0ec269175953"),
                             Award = true,
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2905),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(2905),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1458),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1459),
                             IsDeleted = false,
                             Name = "Brand Evolution Excellence Award",
                             Pitch = false
@@ -732,10 +735,10 @@ namespace IMSBackend.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c90b88d0-955d-4def-b7af-1d0235ca3886"),
+                            Id = new Guid("d3307b7b-b3f1-439b-8172-69ae23351229"),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            DateCreated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(3132),
-                            DateUpdated = new DateTime(2025, 8, 8, 12, 6, 36, 440, DateTimeKind.Utc).AddTicks(3132),
+                            DateCreated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1735),
+                            DateUpdated = new DateTime(2025, 8, 8, 12, 5, 7, 932, DateTimeKind.Utc).AddTicks(1736),
                             IsDeleted = false,
                             Price = 15000m
                         });
