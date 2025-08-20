@@ -141,7 +141,7 @@ namespace IMSBackend.Infrastructure.EmailService
                         {"${email}",emailaddress},
                         {"${fullname}",fullname},
                         {"${noofvotes}", totalvotes },
-                        {"${totaleopleoted}", totalPeopleVoted },
+                        {"${totalpeoplevoted}", totalPeopleVoted },
 
                     };
                     string bodyy = ParseEmail(placeHolders, HTMLBody);
