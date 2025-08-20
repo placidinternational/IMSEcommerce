@@ -117,18 +117,33 @@ public class UnitOfWork : IUnitOfWork
         }
     }
 
-    private IBusinessPictchPriceRepository _businessPictchPriceRepository;
-    public IBusinessPictchPriceRepository BusinessPictchPriceRepository
+    private IPitchPriceRepository _pitchPriceRepository;
+    public IPitchPriceRepository PitchPriceRepository
     {
         get
         {
-            if (_businessPictchPriceRepository == null)
+            if (_pitchPriceRepository == null)
             {
-                _businessPictchPriceRepository = new BusinessPictchPriceRepository(_dbContext);
+                _pitchPriceRepository = new PitchPriceRepository(_dbContext);
             }
-            return _businessPictchPriceRepository;
+            return _pitchPriceRepository;
         }
     }
+
+    private IExibitionStandRepository _exibitionStandRepository;
+    public IExibitionStandRepository ExibitionStandRepository
+    {
+        get
+        {
+            if (_exibitionStandRepository == null)
+            {
+                _exibitionStandRepository = new ExibitionStandRepository(_dbContext);
+            }
+            return _exibitionStandRepository;
+        }
+    }
+
+    
     public async Task<int> Save(CancellationToken cancellationToken)
     {
         return await _dbContext.SaveChangesAsync(cancellationToken);

@@ -12,6 +12,9 @@ namespace IMSBackend.Infrastructure.EmailService
         private static string Resend_Template;
         private static string RegistrationAgent;
         private static string OTP_Template;
+        private static string Business_Pitch;
+        private static string Cast_Vote;
+        private static string Nominee_Vote;
         static EmailComposeBody()
         {
             EmailComposeBody.registration_EmailTemplate = "./EmailTemplates/RegEmail.html";
@@ -21,6 +24,9 @@ namespace IMSBackend.Infrastructure.EmailService
             EmailComposeBody.contact_Template = "./EmailTemplates/contact.html";
             EmailComposeBody.RegistrationAgent = "./EmailTemplates/registeragent.html";
             EmailComposeBody.OTP_Template = "./EmailTemplates/OTP.html";
+            EmailComposeBody.Business_Pitch = "./EmailTemplates/BusinessPitch.html";
+            EmailComposeBody.Cast_Vote = "./EmailTemplates/CastVote.html";
+            EmailComposeBody.Nominee_Vote = "./EmailTemplates/NomineeCastVote.html";
         }
 
         // Completed 
@@ -48,6 +54,102 @@ namespace IMSBackend.Infrastructure.EmailService
 
                 }
                 
+            }
+            catch (Exception ex)
+            {
+                string mmm = ex.Message;
+                return mmm;
+            }
+        }
+
+        public static async Task<string> BusinessPitch(string email, string Fullname, string amount, string eventname, string referencenumber)
+        {
+            try
+            {
+                string HTMLBody = "";
+
+                using (StreamReader sReader = System.IO.File.OpenText(EmailComposeBody.registration_EmailTemplate))
+                {
+                    HTMLBody = await sReader.ReadToEndAsync();
+                    var placeHolders = new Dictionary<string, string>
+                    {
+                        {"${email}",email},
+                        {"${fullname}", Fullname},
+                        {"${amount}", amount },
+                        {"${eventname}", eventname },
+                        {"${referencenumber}", referencenumber },
+
+                    };
+                    string bodyy = ParseEmail(placeHolders, HTMLBody);
+
+                    return bodyy;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string mmm = ex.Message;
+                return mmm;
+            }
+        }
+
+        public static async Task<string> CastVote(string emailaddress, string nomineename, string noofvotes, string category, string referencenumber)
+        {
+            try
+            {
+                string HTMLBody = "";
+
+                using (StreamReader sReader = System.IO.File.OpenText(EmailComposeBody.Cast_Vote))
+                {
+                    HTMLBody = await sReader.ReadToEndAsync();
+                    var placeHolders = new Dictionary<string, string>
+                    {
+                        {"${email}",emailaddress},
+                        {"${nomineename}", nomineename},
+                        {"${noofvotes}", noofvotes },
+                        {"${category}", category },
+                        {"${referencenumber}", referencenumber },
+
+                    };
+                    string bodyy = ParseEmail(placeHolders, HTMLBody);
+
+                    return bodyy;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string mmm = ex.Message;
+                return mmm;
+            }
+        }
+
+        
+             public static async Task<string> NomineeCastVote(string fullname,string emailaddress, string totalvotes, string totalPeopleVoted)
+        {
+            try
+            {
+                string HTMLBody = "";
+
+                using (StreamReader sReader = System.IO.File.OpenText(EmailComposeBody.Nominee_Vote))
+                {
+                    HTMLBody = await sReader.ReadToEndAsync();
+                    var placeHolders = new Dictionary<string, string>
+                    {
+                        {"${email}",emailaddress},
+                        {"${fullname}",fullname},
+                        {"${noofvotes}", totalvotes },
+                        {"${totaleopleoted}", totalPeopleVoted },
+
+                    };
+                    string bodyy = ParseEmail(placeHolders, HTMLBody);
+
+                    return bodyy;
+
+                }
+
             }
             catch (Exception ex)
             {

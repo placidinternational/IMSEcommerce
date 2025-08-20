@@ -16,8 +16,8 @@ namespace IMSBackend.Domain.Entities.BusinessPitches
         public Guid BusinessCategoryId { get; set; }
         public Account.Account Account { get; set; }
         public Guid AccountId { get; set; }
-        public string BusinessDescription { get; set; }
-        public string BusinessLogo { get; set; }
-        public string OwnersPicture { get; set; }
+        public string? BusinessDescription { get; set; }
+        public string? BusinessLogo { get; set; }
+        public string? OwnersPicture { get; set; }
     }
 }

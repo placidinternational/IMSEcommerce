@@ -113,8 +113,6 @@ builder.Services.AddResponseCompression(options =>
 });
 
 
-
-
 var app = builder.Build();
 app.Use(async (context, next) =>
 {

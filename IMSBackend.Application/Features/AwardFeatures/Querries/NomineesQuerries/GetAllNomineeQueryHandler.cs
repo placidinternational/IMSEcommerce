@@ -25,7 +25,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.NomineesQuerrie
         {
             try
             {
-                var query = _unitOfWork.NomineeRepository.GetQueryable().Include(x => x.Account).Include(a=>a.Category).AsQueryable();
+                var query = _unitOfWork.NomineeRepository.GetQueryable().Include(x => x.Account).Include(a=>a.Category).Where(x=>x.Account.UserType ==UserTypeEnum.Nominee && x.IsActive).AsQueryable();
 
                 // Apply search filter
                 if (!string.IsNullOrEmpty(request.SearchParam))

@@ -61,6 +61,8 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.VotingQuerries
                     {
                         AmountPaid = vote.AmountPaid,
                         DateVoted = vote.DateCreated,
+                        VoterEmail = vote.VoterEmail,
+                        VoterName = vote.VoterName,
                         Nominee = vote.Nominee.Account.FullName,
                         Qunatity = vote.Quantity,
                         Category = category.Name

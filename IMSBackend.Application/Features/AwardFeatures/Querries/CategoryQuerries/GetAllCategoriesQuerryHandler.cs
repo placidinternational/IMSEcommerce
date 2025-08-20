@@ -26,7 +26,9 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.CategoryQuerrie
             var response = categories.Select(c => new CategoryResponse
             {
                 Id = c.Id,
-                Name = c.Name
+                Name = c.Name,
+                Pitch = c.Pitch,
+                Award = c.Award,
             }).ToList();
 
             return await Result<List<CategoryResponse>>.SuccessAsync(response, "Fetched successfully");

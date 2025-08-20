@@ -10,5 +10,7 @@ namespace IMSBackend.Application.Dtos.CategoryDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public bool Pitch { get; set; }
+        public bool Award { get; set; }
     }
 }

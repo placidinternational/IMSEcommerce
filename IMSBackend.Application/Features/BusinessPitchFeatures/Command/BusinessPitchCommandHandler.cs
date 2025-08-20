@@ -1,8 +1,13 @@
-﻿using IMSBackend.Common;
+﻿using IMSBackend.Application.Contracts;
+using IMSBackend.Application.Services;
+using IMSBackend.Common;
 using IMSBackend.Common.Enums;
 using IMSBackend.Domain.Entities.BusinessPitches;
+using IMSBackend.Domain.Entities.Transactions;
 using IMSBackend.Domain.Shared;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using SendGrid.Helpers.Mail;
 using System.Text.RegularExpressions;
 
 namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
@@ -10,15 +15,20 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
     public class BusinessPitchCommandHandler : IRequestHandler<BusinessPitchCommand, Result<string>>
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IPaymentService _paymentService;
+        private readonly IJobTestService _jobTestService;
 
-        public BusinessPitchCommandHandler(IUnitOfWork unitOfWork)
+        public BusinessPitchCommandHandler(IUnitOfWork unitOfWork, IPaymentService paymentService, IJobTestService  jobTestService)
         {
             _unitOfWork = unitOfWork;
+            _paymentService = paymentService;
+            _jobTestService = jobTestService;
         }
         public async Task<Result<string>> Handle(BusinessPitchCommand cmd, CancellationToken cancellationToken)
         {
             try
             {
+                var payment = await _paymentService.GetTransactionStatus(cmd.Request.ReferenceNumber);
 
                 Regex regex = new Regex(@"^([\w\.\-\+]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 Match match = regex.Match(cmd.Request.EmailAddress);
@@ -34,10 +44,11 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
                     return await Result<string>.FailureAsync("Email address already exists");
 
                 }
+
                 string password = Guid.NewGuid().ToString("N").Substring(0, 6).ToUpper();
                 byte[] passwordHash, passwordSalt;
                 CreatePasswordHash(password, out passwordHash, out passwordSalt);
-                var pitch = await _unitOfWork.AccountRepository.AddAsync(new Domain.Entities.Account.Account
+                var user = await _unitOfWork.AccountRepository.AddAsync(new Domain.Entities.Account.Account
                 {
                     PasswordHashed = passwordHash,
                     PasswordSalt = passwordSalt,
@@ -47,29 +58,62 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
                     StatusEnum = StatusEnum.Active,
                     Address = cmd.Request.Address,
                     PhoneNumber = cmd.Request.PhoneNumber,
+                    
                 });
                 await _unitOfWork.Save(cancellationToken);
 
-                if (pitch is null)
+                if (user is null)
                 {
                     return await Result<string>.FailureAsync("fail to create");
                 }
-                await _unitOfWork.BusinessPitchRepository.AddAsync(new BusinessPitch
+
+                var pitchPrice = await _unitOfWork.PitchPriceRepository
+                  .GetQueryable()
+                  .Select(p => p.Price)
+                  .FirstOrDefaultAsync(cancellationToken);
+
+                if (pitchPrice <= 0)
                 {
-                    AccountId = pitch.Id,
+                    return await Result<string>.FailureAsync("Pitch price not found or invalid.");
+                }
+
+                // ✅ Match expected vs actual amount from Flutterwave
+                bool amountMatches = Math.Round(pitchPrice) == Math.Round(payment.data.amount);
+
+                var pay = new Payment
+                {
+                    UserId = user.Id,
+                    Amount = payment.data.amount,
+                    Status = amountMatches
+                    ? PaymentStatus.Successful.ToString()
+                    : PaymentStatus.Incomplete.ToString(),
+                    TransactionReference = cmd.Request.ReferenceNumber,
+                    AmountExpected = pitchPrice,
+
+                };
+                await _unitOfWork.PaymentRepository.AddAsync(pay);
+                await _unitOfWork.Save(cancellationToken);
+
+                if (pay.Status == PaymentStatus.Successful.ToString())
+                { 
+                 var i =  await _unitOfWork.BusinessPitchRepository.AddAsync(new BusinessPitch
+                {
+                    AccountId = user.Id,
                     OwnersPicture = cmd.Request.Picture,
                     BusinessLogo = cmd.Request.Logo,
                     BusinessName = cmd.Request.BusinessName,
-                    BusinessCategoryId = cmd.Request.BusinessCategoryId
-
+                    BusinessCategoryId = cmd.Request.BusinessCategoryId,
+                    BusinessDescription = cmd.Request.BusinessDescription,
                 });
                 await _unitOfWork.Save(cancellationToken);
-
-                //var categoryName = await _unitOfWork.CategoryRepository.GetByIdAsync(request.CategoryId, cancellationToken);
+                    pay.TicketId = i.Id;
+                    await _unitOfWork.PaymentRepository.Update(pay);
+                    await _unitOfWork.Save(cancellationToken);
+                }
                 //Send email to user
-                //await _jobTestService.SendWelcomeEmail(request.EmailAddress, request.FullName, request.PhoneNumber, NomineeCode, categoryName.Name);
+                await _jobTestService.BusinessPitch(cmd.Request.EmailAddress, cmd.Request.FullName, payment.data.amount.ToString(), "Ibadan Youth Festival", cmd.Request.ReferenceNumber);
 
-                return await Result<string>.SuccessAsync($"Account created successfully {pitch.Id}");
+                return await Result<string>.SuccessAsync($"Pitched created successfully {user.Id}");
             }
             catch (Exception ex)
             {

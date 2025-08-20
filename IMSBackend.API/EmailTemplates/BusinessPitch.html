@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Business Pitch Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            background-color: #0a3d62;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .content {
+            padding: 20px;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+            .content h2 {
+                color: #0a3d62;
+            }
+
+        .cta {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #38ada9;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .footer {
+            background-color: #f1f1f1;
+            padding: 15px;
+            font-size: 12px;
+            color: #777777;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Business Pitch Submission Received</h1>
+        </div>
+        <div class="content">
+            <h2>Hello ${name},</h2>
+            <p>
+                Thank you for submitting your business pitch to <strong>${eventname}</strong>.
+                We’re excited to learn more about your idea and see the potential impact it can make.
+            </p>
+            <p>
+                Your payment of <strong>${amount}</strong> has been
+                <span style="color:green;"><strong>${paymentstatus}</strong></span>
+                and your pitch reference number is <strong>${referencenumber}</strong>.
+            </p>
+            <p>
+                Our review panel will go through your submission and get back to you with feedback
+                or next steps within the coming days.
+            </p>
+            <a href="https://www.badanmarketsquare.com" class="cta" target="_blank">View My Submission</a>
+            <p>
+                If you have any questions, feel free to reply to this email or contact our team
+                at <a href="mailto:support@ibadanmarketsquare.com">support@ibadanmarketsquare.com</a>.
+            </p>
+        </div>
+        <div class="footer">
+            &copy; 2025 Ibadan Market Square. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

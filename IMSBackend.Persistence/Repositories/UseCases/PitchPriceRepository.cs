@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Persistence.Repositories.UseCases
 {
-    public class BusinessPictchPriceRepository : Repository<PitchPrice>, IBusinessPictchPriceRepository
+    public class PitchPriceRepository : Repository<PitchPrice>, IPitchPriceRepository
     {
-        public BusinessPictchPriceRepository(IMSBackendContext _DbContext) : base(_DbContext)
+        public PitchPriceRepository(IMSBackendContext _DbContext) : base(_DbContext)
         {
         }
     }

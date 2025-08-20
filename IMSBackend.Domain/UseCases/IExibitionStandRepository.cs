@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Domain.UseCases
 {
-    public interface IBusinessPictchPriceRepository : IRepository<PitchPrice>
+    public interface IExibitionStandRepository : IRepository<ExibitionStand>
     {
     }
 }

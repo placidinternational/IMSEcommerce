@@ -127,6 +127,33 @@ public class JobTestService : IJobTestService
     }
 
 
+    public async Task<string> BusinessPitch(string emailAddress, string fullName, string amount, string eventname, string referencenumber)
+    {
+        try
+        {
+            string emailBody = await EmailComposeBody.BusinessPitch(emailAddress,fullName,amount,eventname,  referencenumber);
+
+            string senderEmail = _emailConfig.EmailFrom;
+            string senderDisplayName = _emailConfig.DisplayName;
+
+            EmailMessage email = new EmailMessage()
+            {
+                Subject = "Sucessful Business Pitch",
+                Message = emailBody,
+                Receiver = emailAddress,
+                Sender = senderEmail,
+                DisplayName = senderDisplayName
+            };
+
+            await _infraUnitOfWork.emailServices.SendEmail(email);
+            return "success";
+        }
+        catch (Exception ex)
+        {
+            return "success";
+        }
+    }
+
     public async Task<string> SendLogin(string Ip, string fullname, string browser, DateTime date, string emailaddress, CancellationToken cancellationToken)
     {
         try
@@ -180,4 +207,59 @@ public class JobTestService : IJobTestService
             return "failed";
         }
     }
+
+    public async Task<string> CastVote(string emailAddress, string nomineename, string noofvotes, string category, string referencenumber)
+    {
+        try
+        {
+            string emailBody = await EmailComposeBody.CastVote(emailAddress, nomineename, noofvotes, category, referencenumber);
+
+            string senderEmail = _emailConfig.EmailFrom;
+            string senderDisplayName = _emailConfig.DisplayName;
+
+            EmailMessage email = new EmailMessage()
+            {
+                Subject = "Your Vote Has Been Recorded",
+                Message = emailBody,
+                Receiver = emailAddress,
+                Sender = senderEmail,
+                DisplayName = senderDisplayName
+            };
+
+            await _infraUnitOfWork.emailServices.SendEmail(email);
+            return "success";
+        }
+        catch (Exception ex)
+        {
+            return "success";
+        }
+    }
+
+    public async Task<string> NomineeCastVote(string fullname,string emailAddress, string totalnoofvotes, string totalPeopleVoted)
+    {
+        try
+        {
+            string emailBody = await EmailComposeBody.NomineeCastVote(fullname,emailAddress, totalnoofvotes, totalPeopleVoted);
+
+            string senderEmail = _emailConfig.EmailFrom;
+            string senderDisplayName = _emailConfig.DisplayName;
+
+            EmailMessage email = new EmailMessage()
+            {
+                Subject = "You have a new vote",
+                Message = emailBody,
+                Receiver = emailAddress,
+                Sender = senderEmail,
+                DisplayName = senderDisplayName
+            };
+
+            await _infraUnitOfWork.emailServices.SendEmail(email);
+            return "success";
+        }
+        catch (Exception ex)
+        {
+            return "success";
+        }
+    }
 }
+

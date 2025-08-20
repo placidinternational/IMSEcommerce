@@ -32,17 +32,26 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<None Update="EmailTemplates\NomineeCastVote.html">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="EmailTemplates\emailus.html">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="EmailTemplates\ForgotPswd.html">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="EmailTemplates\CastVote.html">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="EmailTemplates\OTP.html">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="EmailTemplates\login.html">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="EmailTemplates\BusinessPitch.html">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="EmailTemplates\RegEmail.html">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

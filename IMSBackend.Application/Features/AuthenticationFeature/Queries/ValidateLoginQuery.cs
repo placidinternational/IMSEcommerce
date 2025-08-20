@@ -61,10 +61,9 @@ internal sealed class ValidateLoginQueryHandler : IRequestHandler<ValidateLoginQ
             getUser.RefreshToken = _jwtTokenService.GenerateRefreshToken();
             getUser.LastLogin = DateTime.UtcNow;
             getUser.IsEmailVerified = true;
-
             await _unitOfWork.Save(cancellationToken);
 
-            await _jobTestService.SendLogin(query.IP, getUser.FullName, query.Browser, DateTime.UtcNow, getUser.EmailAddress, cancellationToken);
+            //await _jobTestService.SendLogin(query.IP, getUser.FullName, query.Browser, DateTime.UtcNow, getUser.EmailAddress, cancellationToken);
 
             string token;
             List<PermissionObject> permissions = null;
@@ -76,7 +75,6 @@ internal sealed class ValidateLoginQueryHandler : IRequestHandler<ValidateLoginQ
                 Email = getUser.EmailAddress,
                 UserId = getUser.Id,
                 FirstName = getUser.FullName,
-                
                 PhoneNumber = getUser.PhoneNumber,
                 UserType = getUser.UserType.ToString(),
  

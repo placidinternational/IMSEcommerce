@@ -44,6 +44,8 @@ namespace IMSBackend.Persistence.Extentions
                   .AddScoped(typeof(IRepository<>), typeof(Repository<>))
                   .AddScoped<IRegistrationOtpRepository, RegistrationOtpRepository>()
                   .AddScoped<IForgotPasswordOtpRepository, ForgotPasswordOtpRepository>()
+                  .AddScoped<IBusinessPitchRepository, BusinessPitchRepository>()
+                  .AddScoped<IPitchPriceRepository, PitchPriceRepository>()
                   .AddScoped<IAccountRepository, AccountRepository>();
         }
     }

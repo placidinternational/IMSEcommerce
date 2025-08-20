@@ -25,6 +25,8 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Categories
                 var category = await _unitOfWork.CategoryRepository.AddAsync(new Domain.Entities.Award.Category
                 {
                     Name = request.Name,
+                    Award = request.IsAward,
+                    Pitch = request.Ispitch,
                 });
                 await _unitOfWork.Save(cancellationToken);
 

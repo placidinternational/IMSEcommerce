@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IMSBackend.API.Controllers
 {
-    public class AwardCategoryController : BaseController
+    public class BusinessCategoryController : BaseController
     {
 
         /// <summary>

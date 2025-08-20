@@ -20,6 +20,7 @@ namespace IMSBackend.Persistence.Context
         public DbSet<BusinessPitch> BusinessPitch { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<PitchPrice> PitchPrice { get; set; }
+        public DbSet<ExibitionStand> ExibitionStands { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Category>().HasData(
             new Category { Id = Guid.NewGuid(), Name = "African Women’s Fashion Talent of the Year", Award=true },
