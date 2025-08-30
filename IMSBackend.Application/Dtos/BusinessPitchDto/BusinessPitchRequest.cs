@@ -15,7 +15,6 @@ namespace IMSBackend.Application.Dtos.BusinessPitchDto
         public string BusinessName { get; set; }
         public string Picture { get; set; }
         public string Logo { get; set; }
-        public Guid BusinessCategoryId { get; set; }
         public string? BusinessDescription { get; set; }
         public string BusinessLogo { get; set; }
         public string OwnersPicture { get; set; }

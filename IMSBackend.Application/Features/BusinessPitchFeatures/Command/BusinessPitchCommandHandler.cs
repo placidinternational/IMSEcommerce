@@ -102,7 +102,6 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
                     OwnersPicture = cmd.Request.Picture,
                     BusinessLogo = cmd.Request.Logo,
                     BusinessName = cmd.Request.BusinessName,
-                    BusinessCategoryId = cmd.Request.BusinessCategoryId,
                     BusinessDescription = cmd.Request.BusinessDescription,
                 });
                 await _unitOfWork.Save(cancellationToken);

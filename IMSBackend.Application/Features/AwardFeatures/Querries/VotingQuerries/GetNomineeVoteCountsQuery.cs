@@ -10,6 +10,5 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.VotingQuerries
 {
     public class GetNomineeVoteCountsQuery : IRequest<Result<int>>
     {
-        public Guid NomineeId { get; set; }
     }
 }

@@ -73,7 +73,7 @@ namespace IMSBackend.API.Controllers
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
-        [HttpGet("GetByNomineeId/{NomineeId}")]
+        [HttpGet("GetByNomineeId")]
         [ProducesResponseType(typeof(Result<VotingResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByNomineeId([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string? search = null, string? category = null)
         {
@@ -120,13 +120,11 @@ namespace IMSBackend.API.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet("countbynomineeId")]
-        [ProducesResponseType(typeof(Result<VotingResponse>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> countbynomineeId([FromQuery] Guid nomineeId)
+        [ProducesResponseType(typeof(Result<int>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> countbynomineeId()
         {
-            var query = new GetNomineeVoteCountsQuery
-            {
-                NomineeId = nomineeId
-            };
+            var query = new GetNomineeVoteCountsQuery { };
+           
             var userResult = await Sender.Send(query);
 
             if (userResult.Succeeded == false)

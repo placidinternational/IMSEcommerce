@@ -12,8 +12,6 @@ namespace IMSBackend.Domain.Entities.BusinessPitches
     public class BusinessPitch : BaseEntity
     {
         public string BusinessName { get; set; }
-        public Category BusinessCategory { get; set; }
-        public Guid BusinessCategoryId { get; set; }
         public Account.Account Account { get; set; }
         public Guid AccountId { get; set; }
         public string? BusinessDescription { get; set; }

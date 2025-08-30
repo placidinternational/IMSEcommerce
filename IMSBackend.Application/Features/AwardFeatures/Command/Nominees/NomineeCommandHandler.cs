@@ -68,7 +68,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Nominees
                     CompanyName = request.CompanyName,
                     CategoryId = request.CategoryId,
                     NomineeCode = NomineeCode,
-
+                    IsActive = true,
                 });
                 await _unitOfWork.Save(cancellationToken);
 

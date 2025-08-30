@@ -12,7 +12,6 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.VotingQuerries
 {
     public class GetVoteByNomineeQuery : IRequest<PaginatedResult<VotingResponse>>
     {
-        public Guid NomineeId { get; set; }
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
         public string? SearchParam { get; set; }

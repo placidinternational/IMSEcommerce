@@ -64,7 +64,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.VotingQuerries
                         VoterEmail = vote.VoterEmail,
                         VoterName = vote.VoterName,
                         Nominee = vote.Nominee.Account.FullName,
-                        Qunatity = vote.Quantity,
+                        Quantity = vote.Quantity,
                         Category = category.Name
                     });
                 }

@@ -38,11 +38,28 @@ namespace IMSBackend.API.Controllers
         }
 
         /// <summary>
+        /// This is the endpoint to create nominee account 
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPut]
+        [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Update(UpdateNomineeCommand requestModel)
+        {
+            var userResult = await Sender.Send(requestModel);
+
+            if (userResult.Succeeded == false)
+                return BadRequest(userResult);
+            else
+                return Ok(userResult);
+        }
+        /// <summary>
         /// This is the endpoint to get all Nominee
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
-     
+
         [HttpGet]
         [ProducesResponseType(typeof(Result<NomineeResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string? search = null, string? category = null)

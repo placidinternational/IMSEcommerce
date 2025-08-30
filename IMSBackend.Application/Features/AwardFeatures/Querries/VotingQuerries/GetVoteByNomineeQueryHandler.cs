@@ -1,6 +1,9 @@
-﻿using IMSBackend.Application.Dtos.NewFolder;
+﻿using IMSBackend.Application.Contracts;
+using IMSBackend.Application.Dtos.NewFolder;
+using IMSBackend.Application.Services;
 using IMSBackend.Common;
 using IMSBackend.Common.Extensions;
+using IMSBackend.Domain.Entities.Award;
 using IMSBackend.Domain.Shared;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -15,22 +18,25 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.VotingQuerries
     public class GetVoteByNomineeQueryHandler : IRequestHandler<GetVoteByNomineeQuery, PaginatedResult<VotingResponse>>
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserContext _userContext;
 
-        public GetVoteByNomineeQueryHandler(IUnitOfWork unitOfWork)
+        public GetVoteByNomineeQueryHandler(IUnitOfWork unitOfWork, IUserContext userContext)
+
         {
             _unitOfWork = unitOfWork;
+            _userContext = userContext;
         }
         public async Task<PaginatedResult<VotingResponse>> Handle(GetVoteByNomineeQuery request, CancellationToken cancellationToken)
         {
             try
             {
+                var user = await _unitOfWork.NomineeRepository.GetSingleByExpression(x=>x.AccountId == _userContext.UserId, cancellationToken);
+
                 var query = _unitOfWork.VoteRepository.GetQueryable()
                     .Include(x => x.Nominee)
-                        .ThenInclude(a => a.Account).Where(x=>x.NomineeId == request.NomineeId)
+                        .ThenInclude(a => a.Account).Where(x=>x.NomineeId == user.Id)
                     .AsQueryable();
-
-                //TotalVoters
-                var totalVoters = query.CountAsync(cancellationToken);
+         
                 // Apply search filter
                 if (!string.IsNullOrEmpty(request.SearchParam))
                 {
@@ -46,34 +52,24 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.VotingQuerries
                     query = query.Where(a => a.Nominee.Account.StatusEnum == request.Status.Value);
                 }
 
-                // Fetch paginated votes first
-                var pagedVotes = await query
-                    .OrderByDescending(a => a.DateCreated).ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
 
-                // Map to VotingResponse (including async category fetches)
-                var data = new List<VotingResponse>();
-                foreach (var vote in pagedVotes.Data)
-                {
-                    var category = await _unitOfWork.CategoryRepository.GetByIdAsync(vote.Nominee.CategoryId, cancellationToken);
+                var totalCount = query.Count();
 
-                    data.Add(new VotingResponse
+                var data = await query
+                    .OrderByDescending(x => x.DateCreated)
+                    .Skip((request.PageNumber - 1) * request.PageSize)
+                    .Take(request.PageSize)
+                    .Select(x => new VotingResponse
                     {
-                        AmountPaid = vote.AmountPaid,
-                        DateVoted = vote.DateCreated,
-                        Nominee = vote.Nominee.Account.FullName,
-                        Qunatity = vote.Quantity,
-                        Category = category.Name
-                    });
-                }
+                        AmountPaid = x.AmountPaid,
+                        DateVoted = x.DateCreated,
+                        Nominee = x.Nominee.Account.FullName,
+                        Quantity = x.Quantity,
+                        VoterEmail = x.VoterEmail,
+                        VoterName = x.VoterName,
+                }).ToPaginatedListAsync(request.PageNumber, request.PageSize, cancellationToken);
 
-
-                return new PaginatedResult<VotingResponse>
-                {
-                    PageSize = pagedVotes.PageSize,
-                    TotalCount = pagedVotes.TotalCount,
-                    Succeeded = true,
-                    Data = data
-                };
+                return data;
             }
             catch (Exception)
             {

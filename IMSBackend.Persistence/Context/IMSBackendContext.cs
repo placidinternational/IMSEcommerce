@@ -10,6 +10,7 @@ namespace IMSBackend.Persistence.Context
     {
         public IMSBackendContext(DbContextOptions<IMSBackendContext> options) : base(options)
         {
+
         }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<ForgotPasswordOtp> ForgotPasswordOtps { get; set; }
@@ -50,12 +51,6 @@ namespace IMSBackend.Persistence.Context
             new Category { Id = Guid.NewGuid(), Name = "Health and Wellness Brand of the Year", Award = true },
             new Category { Id = Guid.NewGuid(), Name = "Brand Evolution Excellence Award", Award = true }
         );
-            modelBuilder.Entity<PitchPrice>().HasData(
-                new PitchPrice
-                {
-                    Id = Guid.NewGuid(),
-                    Price = 15000
-                });
         }
     }
 }
