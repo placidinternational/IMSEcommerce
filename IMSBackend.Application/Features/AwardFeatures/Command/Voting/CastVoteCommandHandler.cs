@@ -75,6 +75,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Voting
                             VoterName = cmd.VoterName,
                             Quantity = cmd.Quantity,
                             PaymentStatus = pay.Status,
+                            IsSuccessful =true
                         };
                         await _unitOfWork.VoteRepository.AddAsync(castVote);
                         await _unitOfWork.Save(cancellationToken);

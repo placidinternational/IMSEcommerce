@@ -154,6 +154,28 @@ namespace IMSBackend.API.Controllers
                 return Ok(userResult);
         }
 
+        /// <summary>
+        /// This is the endpoint to get AdminVoteMetric
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("AdminMetrics")]
+        [ProducesResponseType(typeof(Result<AdminVoteMetric>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> AdminMetrics()
+        {
+            var query = new AdminVoteMetricsQuerry
+            {
+
+            };
+            var userResult = await Sender.Send(query);
+
+            if (userResult.Succeeded == false)
+                return BadRequest(userResult);
+            else
+                return Ok(userResult);
+        }
+
     }
 
 }

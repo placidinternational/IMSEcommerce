@@ -1,6 +1,7 @@
 ﻿using IMSBackend.Common;
 using IMSBackend.Domain.Shared;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Nominees
         public string Logo { get; set; }
         public string Picture { get; set; }
         public string Biography { get; set; }
+        public string FullName { get; set; }
+        public string PhoneNumber { get; set; }
     }
 
     public class UpdateNomineeCommandHandler : IRequestHandler<UpdateNomineeCommand, Result<string>>
@@ -28,7 +31,9 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Nominees
         }
         public async Task<Result<string>> Handle(UpdateNomineeCommand request, CancellationToken cancellationToken)
         {
-            var nominee = await _unitOfWork.NomineeRepository.GetSingleByExpression(x=>x.AccountId==request.Id, cancellationToken);
+            var nominee = await _unitOfWork.NomineeRepository.GetQueryable().Include(x => x.Account).Include(x => x.Category).Where(x => x.Account.Id == request.Id).FirstOrDefaultAsync(cancellationToken);
+
+           
             if (nominee == null) 
             {
                 return await Result<string>.FailureAsync("Nominee Not found");
@@ -39,6 +44,9 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Nominees
             nominee.DateUpdated = nominee.DateUpdated;
             nominee.Biography = request.Biography;
             nominee.CompanyName = request.CompanyName;
+            nominee.Account.FullName = request.FullName;
+            nominee.Account.PhoneNumber = request.PhoneNumber;
+            nominee.Account.DateUpdated = DateTime.UtcNow;
             nominee.Logo = request.Logo;
 
             await _unitOfWork.NomineeRepository.Update(nominee);

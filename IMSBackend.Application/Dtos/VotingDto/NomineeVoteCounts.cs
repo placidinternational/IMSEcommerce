@@ -3,5 +3,6 @@
     public class NomineeVoteCounts
     {
         public int TotalVotes { get; set; }
+        public int TotalVoters { get; set; }
     }
 }

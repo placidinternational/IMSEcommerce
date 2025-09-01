@@ -1,4 +1,4 @@
-﻿using IMSBackend.Application.Dtos.NewFolder;
+﻿using IMSBackend.Application.Dtos.VotingDto;
 using IMSBackend.Common;
 using MediatR;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Application.Features.AwardFeatures.Querries.VotingQuerries
 {
-    public class GetNomineeVoteCountsQuery : IRequest<Result<NomineeVoteCounts>>
+    public class AdminVoteMetricsQuerry : IRequest<Result<AdminVoteMetric>>
     {
     }
 }

@@ -37,7 +37,7 @@ namespace IMSBackend.Application.Services
                     Headers =
             {
                 { "accept", "application/json" },
-                { "Authorization", $"Bearer {_flutterwaveSettings.SecretKey}" }
+                { "Authorization", $"Bearer FLWSECK-6a7475d21c6c3d38907d11a8b0e2b3b0-198e5ceecebvt-X" }
             },
                 };
 
