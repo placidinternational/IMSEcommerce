@@ -8,20 +8,15 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
 {
-    public class ExibitionStandCommand : IRequest<Result<string>>
+    public class DinnerTicketCommand : IRequest<Result<string>>
     {
         public string FullName { get; set; }
-        public string BusinessName { get; set; }
-        public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
-        public string? InstagramHandle { get; set; }
-        public string? TikTokHandle { get; set; }
-        public string ExitibitionType { get; set; }
+        public string EmailAddress { get; set; }
+        public string TicketType { get; set; }
+        public string Quantity { get; set; }
         public decimal Price { get; set; }
-        public string? BrandLogo { get; set; }
-        public string? SampleProduct { get; set; }
-        public string? Picture { get; set; }
         public string ReferenceNumber { get; set; }
     }
 }

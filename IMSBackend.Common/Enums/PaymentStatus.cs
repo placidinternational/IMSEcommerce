@@ -5,6 +5,7 @@
         Pending,
         Successful,
         Failed,
-        Incomplete
+        Incomplete,
+        Manual
     }
 }

@@ -26,8 +26,13 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.VotingQuerries
             var totalNominees = await _unitOfWork.NomineeRepository.GetQueryable().Where(x => x.IsActive).CountAsync();
             var totalVoters = await _unitOfWork.VoteRepository.GetQueryable().CountAsync();
             var totalCategories = await _unitOfWork.CategoryRepository.GetQueryable().CountAsync();
-            var totalVotes = await _unitOfWork.VoteRepository.GetQueryable().SumAsync(v => v.Quantity);
-            var revenue = await _unitOfWork.VoteRepository.GetQueryable().SumAsync(v => v.AmountPaid); 
+            var totalVotes = await _unitOfWork.VoteRepository
+                                 .GetQueryable()
+                                 .Where(v => v.IsSuccessful)
+                                 .SumAsync(v => v.Quantity, cancellationToken);
+            var revenue = await _unitOfWork.VoteRepository.GetQueryable().
+                            Where(v => v.IsSuccessful)
+                            .SumAsync(v => v.AmountPaid); 
 
 
             var metrics = new AdminVoteMetric

@@ -1,14 +1,13 @@
-﻿using IMSBackend.Common;
-using MediatR;
+﻿using IMSBackend.Common.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
+namespace IMSBackend.Domain.Entities.BusinessPitches
 {
-    public class ExibitionStandCommand : IRequest<Result<string>>
+    public class ExibitionStands : BaseEntity
     {
         public string FullName { get; set; }
         public string BusinessName { get; set; }
@@ -22,6 +21,6 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
         public string? BrandLogo { get; set; }
         public string? SampleProduct { get; set; }
         public string? Picture { get; set; }
-        public string ReferenceNumber { get; set; }
+        public string ExitibionCode { get; set; }
     }
 }

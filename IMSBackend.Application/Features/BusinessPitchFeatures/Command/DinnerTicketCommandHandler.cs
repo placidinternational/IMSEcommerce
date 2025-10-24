@@ -1,8 +1,7 @@
-﻿using Hangfire.States;
-using IMSBackend.Application.Contracts;
+﻿using IMSBackend.Application.Contracts;
+using IMSBackend.Application.Services;
 using IMSBackend.Common;
 using IMSBackend.Common.Enums;
-using IMSBackend.Domain.Entities.BusinessPitches;
 using IMSBackend.Domain.Entities.Transactions;
 using IMSBackend.Domain.Shared;
 using MediatR;
@@ -14,45 +13,42 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
 {
-    public class ExibitionStandCommandHandler : IRequestHandler<ExibitionStandCommand, Result<string>>
+    public class DinnerTicketCommandHandler : IRequestHandler<DinnerTicketCommand, Result<string>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPaymentService _paymentService;
 
-        public ExibitionStandCommandHandler(IUnitOfWork unitOfWork, IPaymentService paymentService)
+        public DinnerTicketCommandHandler(IUnitOfWork unitOfWork, IPaymentService paymentService)
         {
             _unitOfWork = unitOfWork;
             _paymentService = paymentService;
         }
-        public async Task<Result<string>> Handle(ExibitionStandCommand request, CancellationToken cancellationToken)
+        public async Task<Result<string>> Handle(DinnerTicketCommand request, CancellationToken cancellationToken)
         {
             try
             {
                 var payment = await _paymentService.GetTransactionStatus(request.ReferenceNumber);
-                if (payment == null) 
-                { 
+                if (payment == null)
+                {
                     return await Result<string>.FailureAsync("Payment cannot be null");
                 }
 
-                var stand = await _unitOfWork.ExibitionStandRepository.AddAsync(new Domain.Entities.BusinessPitches.ExibitionStands
+                var ticket = await _unitOfWork.DinnerTicketRepository.AddAsync(new Domain.Entities.BusinessPitches.DinnerTicket
                 {
                     FullName = request.FullName,
-                    BusinessName = request.BusinessName,
-                    Email = request.Email,
+                    EmailAddress = request.EmailAddress,
                     PhoneNumber = request.PhoneNumber,
-                    ExitibitionType = request.ExitibitionType,
-                    ExitibionCode = Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper(),
+                    TicketType = request.TicketType,
+                    TicketCode = Guid.NewGuid().ToString("N").Substring(0, 8).ToUpper(),
                     Address = request.Address,
-                    TikTokHandle = request.TikTokHandle,
-                    InstagramHandle = request.InstagramHandle,
-                    Picture = request.Picture,
-                    BrandLogo = request.BrandLogo,
-                    SampleProduct = request.SampleProduct,
-                    Price = payment.data.amount,
+                    Quantity = request.Quantity,
+                    AmountPaid = payment.data.amount,
+                    Price = request.Price,
+
                 });
                 await _unitOfWork.Save(cancellationToken);
 
-                if (stand == null)
+                if (ticket == null)
                 {
                     return await Result<string>.FailureAsync("failed to create");
                 }
@@ -63,7 +59,7 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
                     {
                         Amount = payment.data.amount,
                         TransactionReference = request.ReferenceNumber,
-                        ExibitionStandId = stand.Id,
+                        TicketId = ticket.Id,
                         Status = PaymentStatus.Successful.ToString(),
                     };
                     await _unitOfWork.PaymentRepository.AddAsync(pay);
@@ -76,7 +72,6 @@ namespace IMSBackend.Application.Features.BusinessPitchFeatures.Command
             {
                 return await Result<string>.FailureAsync("error");
             }
-
         }
     }
 }

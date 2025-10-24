@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Persistence.Repositories.UseCases
 {
-    public class ExibitionStandRepository : Repository<ExibitionStands>, IExibitionStandRepository
+    public class DinnerTicketRepository : Repository<DinnerTicket>, IDinnerTicketRepository
     {
-        public ExibitionStandRepository(IMSBackendContext _DbContext) : base(_DbContext)
+        public DinnerTicketRepository(IMSBackendContext _DbContext) : base(_DbContext)
         {
         }
     }

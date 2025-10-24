@@ -42,6 +42,26 @@ namespace IMSBackend.API.Controllers
                 return Ok(userResult);
         }
 
+
+        /// <summary>
+        /// This is the endpoint to cast  manual vote
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpPost("ManualVote")]
+        [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> ManualVote(ManualVoteCommand requestModel)
+        {
+            var userResult = await Sender.Send(requestModel);
+
+            if (userResult.Succeeded == false)
+                return BadRequest(userResult);
+            else
+                return Ok(userResult);
+        }
+
+
         /// <summary>
         /// This is the endpoint to get all votes
         /// </summary>
@@ -175,6 +195,70 @@ namespace IMSBackend.API.Controllers
             else
                 return Ok(userResult);
         }
+
+        /// <summary>
+        /// This is the endpoint to get nominee vote counts
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("AdminGetNomineeVoteCount")]
+        [ProducesResponseType(typeof(Result<VotingResponse>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> AdminGetNomineeVoteCount([FromQuery] Guid Id)
+        {
+            var query = new AdminGetNomineeVoteCountsQuery
+            {
+                Id = Id
+            };
+            var userResult = await Sender.Send(query);
+
+            if (userResult.Succeeded == false)
+                return BadRequest(userResult);
+            else
+                return Ok(userResult);
+        }
+
+
+        /// <summary>
+        /// This is the endpoint to get nominee votes
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [Authorize]
+        [HttpGet("AdminGetNomineeVotes")]
+        [ProducesResponseType(typeof(Result<VotingResponse>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> AdminGetNomineeVotes([FromQuery] Guid Id, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string? search = null, string? category = null)
+        {
+            var query = new AdminGetNomineeVotesByIdQuery
+            {
+                Id = Id,
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                SearchParam = search,
+                Category = category
+            };
+            var userResult = await Sender.Send(query);
+
+            if (userResult.Succeeded == false)
+                return BadRequest(userResult);
+            else
+                return Ok(userResult);
+        }
+        [AllowAnonymous]
+        [HttpGet("winners")]
+        public async Task<IActionResult> GetCategoryWinners([FromQuery] Guid? categoryId)
+        {
+            // Pass the category filter to the query
+            var query = new VoteWinnersQuery
+            {
+                CategoryId = categoryId
+            };
+
+            var result = await Sender.Send(query);
+
+            return Ok(result);
+        }
+
 
     }
 

@@ -19,6 +19,8 @@ namespace IMSBackend.Domain.Entities.Transactions
         public Guid? VoteId { get; set; }
         public Guid? TicketId { get; set; }
 
+        public Guid? ExibitionStandId { get; set; }
+
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }

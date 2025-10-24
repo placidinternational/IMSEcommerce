@@ -31,7 +31,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Command.Voting
         {
             try
             {
-                var nominee = await _unitOfWork.NomineeRepository.GetQueryable().Include(x => x.Account).Where(x => x.AccountId == cmd.NomineeId).FirstOrDefaultAsync();
+                var nominee = await _unitOfWork.NomineeRepository.GetQueryable().Include(x => x.Account).Where(x => x.Id == cmd.NomineeId).FirstOrDefaultAsync();
                 if (nominee == null)
                 {
                     return await Result<string>.FailureAsync("Nominee cannot be found");

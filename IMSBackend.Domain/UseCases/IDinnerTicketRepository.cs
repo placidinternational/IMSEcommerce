@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Domain.UseCases
 {
-    public interface IExibitionStandRepository : IRepository<ExibitionStands>
+    public interface IDinnerTicketRepository : IRepository<DinnerTicket>
     {
     }
 }

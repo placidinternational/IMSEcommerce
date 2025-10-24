@@ -24,4 +24,6 @@ namespace IMSBackend.Application.Dtos.Nominee.Response
         public string NomineeCode { get; set; }
         public DateTime DateCreated { get; set; }
     }
+
+
 }

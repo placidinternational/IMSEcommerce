@@ -14,5 +14,6 @@ public interface IUnitOfWork : IDisposable
     IPitchPriceRepository PitchPriceRepository { get; }
     IExibitionStandRepository ExibitionStandRepository {  get; }
     IBusinessPitchRepository BusinessPitchRepository { get; }
+    IDinnerTicketRepository DinnerTicketRepository { get; }
     Task<int> Save(CancellationToken cancellationToken);
 }

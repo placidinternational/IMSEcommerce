@@ -143,7 +143,19 @@ public class UnitOfWork : IUnitOfWork
         }
     }
 
-    
+    private IDinnerTicketRepository _dinnerTicketRepository;
+    public IDinnerTicketRepository DinnerTicketRepository
+    {
+        get
+        {
+            if (_dinnerTicketRepository == null)
+            {
+                _dinnerTicketRepository = new DinnerTicketRepository(_dbContext);
+            }
+            return _dinnerTicketRepository;
+        }
+    }
+
     public async Task<int> Save(CancellationToken cancellationToken)
     {
         return await _dbContext.SaveChangesAsync(cancellationToken);

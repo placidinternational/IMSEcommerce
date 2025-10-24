@@ -70,6 +70,23 @@ namespace IMSBackend.API.Controllers
         }
 
         /// <summary>
+        /// This is the endpoint to create Dinner Ticket
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [HttpPost("DinnerTicket")]
+        [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> DinnerTicket(DinnerTicketCommand requestModel)
+        {
+            var userResult = await Sender.Send(requestModel);
+
+            if (userResult.Succeeded == false)
+                return BadRequest(userResult);
+            else
+                return Ok(userResult);
+        }
+
+        /// <summary>
         /// This is the endpoint to get pitch price
         /// </summary>
         /// <param name="requestModel"></param>

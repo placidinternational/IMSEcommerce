@@ -48,7 +48,7 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.NomineesQuerrie
                 // Project to DTO
                 var nominee = query.Select(a => new NomineeResponse
                 {
-                    Id = a.Account.Id,
+                    Id = a.Id,
                     FullName = a.Account.FullName,
                     EmailAddress = a.Account.EmailAddress,
                     DateCreated = a.Account.DateCreated,

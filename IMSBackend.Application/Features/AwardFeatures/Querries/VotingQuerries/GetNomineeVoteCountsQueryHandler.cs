@@ -42,4 +42,5 @@ namespace IMSBackend.Application.Features.AwardFeatures.Querries.VotingQuerries
             return await Result<NomineeVoteCounts>.SuccessAsync(data, "Data fetched successfully");
         }
     }
+   
 }
