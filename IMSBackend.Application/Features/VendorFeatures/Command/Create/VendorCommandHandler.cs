@@ -51,6 +51,8 @@ namespace IMSBackend.Application.Features.VendorFeatures.Command.Create
                     PasswordSalt = passwordSalt,
                     EmailAddress = request.EmailAddress,
                     PhoneNumber = request.PhoneNumber,
+                    FullName = request.FullName,
+                    Address = request.Address,
                     UserType = UserTypeEnum.Vendor,
                     StatusEnum = StatusEnum.Active,
                     PasswordHashed = passwordHash,
