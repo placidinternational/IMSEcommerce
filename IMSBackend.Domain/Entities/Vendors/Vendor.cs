@@ -11,7 +11,6 @@ namespace IMSBackend.Domain.Entities.Vendors
     {
         public string EmailAddress { get; set; }
         public string Fullname { get; set; }
-        public string Password { get; set; }
         public Guid AccountId { get; set; }
         public string CompanyName { get; set; }
         public string Address { get; set; }

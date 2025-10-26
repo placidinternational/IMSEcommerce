@@ -8,7 +8,7 @@ namespace IMSBackend.Common.Enums
 {
     public enum UserTypeEnum
     {
-        Nominee =1,
+        Vendor =1,
         Admin = 2,
         Pitch = 3
     }

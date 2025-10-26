@@ -46,13 +46,15 @@ namespace IMSBackend.Application.Features.VendorFeatures.Command.Create
                 }
                 byte[] passwordHash, passwordSalt;
                 CreatePasswordHash(request.Password, out passwordHash, out passwordSalt);
-                var user = _mapper.Map<Account>(request);
-                user.PasswordSalt = passwordSalt;
-                user.EmailAddress = request.EmailAddress;
-                user.FullName = request.FullName;
-                user.UserType = UserTypeEnum.Nominee;
-                user.StatusEnum = StatusEnum.Active;
-                user.PasswordHashed = passwordHash;
+                var user = new Account
+                {
+                    PasswordSalt = passwordSalt,
+                    EmailAddress = request.EmailAddress,
+                    PhoneNumber = request.PhoneNumber,
+                    UserType = UserTypeEnum.Vendor,
+                    StatusEnum = StatusEnum.Active,
+                    PasswordHashed = passwordHash,
+                };
                 await _unitOfWork.AccountRepository.AddAsync(user);
                 await _unitOfWork.Save(cancellationToken);
 

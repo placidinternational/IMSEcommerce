@@ -51,7 +51,7 @@ internal sealed class CreateAuthCommandHandler : IRequestHandler<CreateAuthComma
             user.PasswordSalt = passwordSalt;
             user.EmailAddress = command.userRegistrationModel.EmailAddress;
             user.FullName = command.userRegistrationModel.LastName;
-            user.UserType = UserTypeEnum.Nominee;
+            user.UserType = UserTypeEnum.Vendor;
             user.StatusEnum = StatusEnum.Active;
             user.PasswordHashed = passwordHash;
             await _unitOfWork.AccountRepository.AddAsync(user);
