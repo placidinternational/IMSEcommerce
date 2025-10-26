@@ -67,7 +67,7 @@ internal sealed class ValidateLoginQueryHandler : IRequestHandler<ValidateLoginQ
 
             string token;
             List<PermissionObject> permissions = null;
-                token = _jwtTokenService.GetAdminToken(getUser, permissions);
+                token = _jwtTokenService.GetToken(getUser);
             return await Result<LoginResponseDto>.SuccessAsync(new LoginResponseDto
             {
                 AccessToken = token,

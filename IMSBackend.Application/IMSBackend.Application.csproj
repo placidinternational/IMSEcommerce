@@ -26,5 +26,9 @@
     <ProjectReference Include="..\IMSBackend.Domain\IMSBackend.Domain.csproj" />
     <ProjectReference Include="..\IMSBackend.Infrastructure\IMSBackend.Infrastructure.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\VendorCategoriesFeatures\Querries\" />
+    <Folder Include="Features\VendorFeatures\Querries\" />
+  </ItemGroup>
 
 </Project>

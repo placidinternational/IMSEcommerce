@@ -20,7 +20,7 @@ namespace IMSBackend.Application.Features.VendorFeatures.Command.Create
         }
         public async Task<Result<string>> Handle(BankDetailsCommand request, CancellationToken cancellationToken)
         {
-           var vendor = await _unitOfWork.VendorCategoryRepository.GetByIdAsync(request.VendorId, cancellationToken);
+           var vendor = await _unitOfWork.VendorsRepository.GetByIdAsync(request.VendorId, cancellationToken);
             if (vendor == null) 
             { 
                 return await Result<string>.FailureAsync("Vendor not found");

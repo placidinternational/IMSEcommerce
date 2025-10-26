@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMSBackend.Domain.Entities.Vendors
+namespace IMSBackend.Domain.Entities.Product
 {
-    public class VendorCategory : BaseEntity
+    public class ProductCategory : BaseEntity
     {
         public string Name { get; set; }
-        public ICollection<Vendor> Vendor { get; set; }
-
+        public string Image { get; set; }
+        public ICollection<Product> Product { get; set; }
     }
 }

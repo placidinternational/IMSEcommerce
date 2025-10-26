@@ -67,7 +67,7 @@ namespace IMSBackend.Application.Features.VendorFeatures.Command.Create
                     Address = request.Address,
                     PhoneNumber = request.PhoneNumber,
                     Logo = request.logo,
-                    Category = request.Category,
+                    CategoryId = request.CategoryId,
                     Description = request.Description,
                 };
                 var data = await _unitOfWork.VendorsRepository.AddAsync(vendor);

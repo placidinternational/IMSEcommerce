@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMSBackend.Domain.Entities.Vendors
+namespace IMSBackend.Domain.Entities.AccountDomain
 {
-    public class VendorCategory : BaseEntity
+    public class State : BaseEntity
     {
+        public Country Country { get; set; }
+        public Guid? CountryId { get; set; }
         public string Name { get; set; }
-        public ICollection<Vendor> Vendor { get; set; }
-
     }
 }

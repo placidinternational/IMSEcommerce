@@ -103,6 +103,56 @@ public class UnitOfWork : IUnitOfWork
             return _vendorsRepository;
         }
     }
+    private IProductRepository _productRepository;
+    public IProductRepository ProductRepository
+    {
+        get
+        {
+            if (_productRepository == null)
+            {
+                _productRepository = new ProductRepository(_dbContext);
+            }
+            return _productRepository;
+        }
+    }
+
+    private IEventRepository _eventRepository;
+    public IEventRepository EventRepository
+    {
+        get
+        {
+            if (_eventRepository == null)
+            {
+                _eventRepository = new EventRepository(_dbContext);
+            }
+            return _eventRepository;
+        }
+    }
+
+    private ITicketCategoryRepository _ticketCategoryRepository;
+    public ITicketCategoryRepository TicketCategoryRepository
+    {
+        get
+        {
+            if (_ticketCategoryRepository == null)
+            {
+                _ticketCategoryRepository = new TicketCategoryRepository(_dbContext);
+            }
+            return _ticketCategoryRepository;
+        }
+    }
+    private IProductCategoryRepository _productCategoryRepository;
+    public IProductCategoryRepository ProductCategoryRepository
+    {
+        get
+        {
+            if (_productCategoryRepository == null)
+            {
+                _productCategoryRepository = new ProductCategoryRepository(_dbContext);
+            }
+            return _productCategoryRepository;
+        }
+    }
     public async Task<int> Save(CancellationToken cancellationToken)
     {
         return await _dbContext.SaveChangesAsync(cancellationToken);
