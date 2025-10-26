@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IMSBackend.Persistence.Context
 {
-    public class IMSEcommerceContext : DbContext
+    public class IMSBackendContext : DbContext
     {
-        public IMSEcommerceContext(DbContextOptions<IMSEcommerceContext> options) : base(options)
+        public IMSBackendContext(DbContextOptions<IMSBackendContext> options) : base(options)
         {
 
         }

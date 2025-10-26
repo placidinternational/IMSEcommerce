@@ -6,17 +6,17 @@ using IMSBackend.Persistence.Extensions;
 
 namespace IMSBackend.Persistence.Factory;
 
-public class IMSEcommerceContextFactory : IDesignTimeDbContextFactory<IMSEcommerceContext>
+public class IMSBackendContextFactory : IDesignTimeDbContextFactory<IMSBackendContext>
 {
-    public IMSEcommerceContext CreateDbContext(string[] args)
+    public IMSBackendContext CreateDbContext(string[] args)
     {
         IConfiguration config = new ConfigurationBuilder()
             .AddBasePath().AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
 
-        var optionsBuilder = new DbContextOptionsBuilder<IMSEcommerceContext>();
-        var connectionString = config.GetConnectionString(nameof(IMSEcommerceContext));
+        var optionsBuilder = new DbContextOptionsBuilder<IMSBackendContext>();
+        var connectionString = config.GetConnectionString(nameof(IMSBackendContext));
          optionsBuilder.UseSqlServer(connectionString, b => b.MigrationsAssembly("IMSBackend.Persistence"));
         //optionsBuilder.UseNpgsql(connectionString, b => b.MigrationsAssembly("IMSBackend.Persistence"));
-        return new IMSEcommerceContext(optionsBuilder.Options);
+        return new IMSBackendContext(optionsBuilder.Options);
     }
 }

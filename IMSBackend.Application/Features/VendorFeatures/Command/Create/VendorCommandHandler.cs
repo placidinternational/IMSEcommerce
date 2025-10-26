@@ -58,7 +58,7 @@ namespace IMSBackend.Application.Features.VendorFeatures.Command.Create
 
                 var vendor = new Vendor
                 {
-                    AccountId = request.UserId,
+                    AccountId = user.Id,
                     Fullname = request.FullName,
                     EmailAddress = request.EmailAddress,
                     CompanyName = request.CompanyName,
@@ -72,7 +72,7 @@ namespace IMSBackend.Application.Features.VendorFeatures.Command.Create
                 await _unitOfWork.Save(cancellationToken);
                 if (data.Id != Guid.Empty)
                 {
-                    return await Result<string>.SuccessAsync("Vendor created successfully");
+                    return await Result<string>.SuccessAsync($"Vendor created successfully {data.Id} ");
                 }
                 else
                 {

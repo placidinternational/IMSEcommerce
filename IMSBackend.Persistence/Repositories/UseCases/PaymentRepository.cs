@@ -11,7 +11,7 @@ namespace IMSBackend.Persistence.Repositories.UseCases
 {
     public class PaymentRepository : Repository<Payment>, IPaymentRepository
     {
-        public PaymentRepository(IMSEcommerceContext _DbContext) : base(_DbContext)
+        public PaymentRepository(IMSBackendContext _DbContext) : base(_DbContext)
         {
         }
     }

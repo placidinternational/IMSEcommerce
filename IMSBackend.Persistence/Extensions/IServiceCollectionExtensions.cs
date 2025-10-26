@@ -22,8 +22,8 @@ namespace IMSBackend.Persistence.Extentions
 
         public static IServiceCollection AddSQLRepository(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString(nameof(IMSEcommerceContext));
-            services.AddDbContext<IMSEcommerceContext>(options =>
+            var connectionString = configuration.GetConnectionString(nameof(IMSBackendContext));
+            services.AddDbContext<IMSBackendContext>(options =>
             {
                 //UseNpgsql
                 options.UseSqlServer(connectionString,

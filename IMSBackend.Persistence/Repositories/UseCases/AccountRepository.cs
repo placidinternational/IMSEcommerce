@@ -7,8 +7,8 @@ using System.Text.RegularExpressions;
 namespace IMSBackend.Persistence.Repositories.UseCases;
 public class AccountRepository : Repository<Account>, IAccountRepository
 {
-    private readonly IMSEcommerceContext _context;
-    public AccountRepository(IMSEcommerceContext _DbContext) : base(_DbContext)
+    private readonly IMSBackendContext _context;
+    public AccountRepository(IMSBackendContext _DbContext) : base(_DbContext)
     {
         _context = _DbContext;
     }

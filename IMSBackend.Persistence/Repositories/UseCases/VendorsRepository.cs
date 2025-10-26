@@ -11,7 +11,7 @@ namespace IMSBackend.Persistence.Repositories.UseCases
 {
     public class VendorsRepository : Repository<Vendor>, IVendorsRepository
     {
-        public VendorsRepository(IMSEcommerceContext _DbContext) : base(_DbContext)
+        public VendorsRepository(IMSBackendContext _DbContext) : base(_DbContext)
         {
         }
     }

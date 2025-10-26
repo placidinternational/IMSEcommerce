@@ -6,8 +6,8 @@ namespace IMSBackend.Persistence.Repositories.UseCases;
 
 public class RegistrationOtpRepository : Repository<RegistrationOtp>, IRegistrationOtpRepository
 {
-    private readonly IMSEcommerceContext _context;
-    public RegistrationOtpRepository(IMSEcommerceContext _DbContext) : base(_DbContext)
+    private readonly IMSBackendContext _context;
+    public RegistrationOtpRepository(IMSBackendContext _DbContext) : base(_DbContext)
     {
         _context = _DbContext;
     }

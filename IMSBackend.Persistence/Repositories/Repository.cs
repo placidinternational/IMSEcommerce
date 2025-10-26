@@ -8,9 +8,9 @@ namespace IMSBackend.Persistence.Repositories;
 
 public class Repository<T> : IRepository<T> where T : BaseEntity
 {
-    private readonly IMSEcommerceContext dbContext;
+    private readonly IMSBackendContext dbContext;
 
-    protected Repository(IMSEcommerceContext _DbContext)
+    protected Repository(IMSBackendContext _DbContext)
     {
         dbContext = _DbContext;
     }

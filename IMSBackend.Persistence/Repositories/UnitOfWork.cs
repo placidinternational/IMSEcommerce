@@ -8,10 +8,10 @@ namespace IMSBackend.Persistence.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly IMSEcommerceContext _dbContext;
+    private readonly IMSBackendContext _dbContext;
     private bool disposed;
 
-    public UnitOfWork(IMSEcommerceContext dbContext) => _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+    public UnitOfWork(IMSBackendContext dbContext) => _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
 
     private IAccountRepository _accountRepository;

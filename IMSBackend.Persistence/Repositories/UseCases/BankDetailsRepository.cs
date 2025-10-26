@@ -11,7 +11,7 @@ namespace IMSBackend.Persistence.Repositories.UseCases
 {
     public class BankDetailsRepository : Repository<BankDetails>, IBankDetailsRepository
     {
-        public BankDetailsRepository(IMSEcommerceContext _DbContext) : base(_DbContext)
+        public BankDetailsRepository(IMSBackendContext _DbContext) : base(_DbContext)
         {
         }
     }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IMSBackend.Persistence.Migrations
 {
-    [DbContext(typeof(IMSEcommerceContext))]
+    [DbContext(typeof(IMSBackendContext))]
     [Migration("20251026141326_init")]
     partial class init
     {

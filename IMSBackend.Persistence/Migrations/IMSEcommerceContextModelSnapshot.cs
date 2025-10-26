@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace IMSBackend.Persistence.Migrations
 {
-    [DbContext(typeof(IMSEcommerceContext))]
-    partial class IMSEcommerceContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(IMSBackendContext))]
+    partial class IMSBackendContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
