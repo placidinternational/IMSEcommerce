@@ -22,8 +22,8 @@ namespace IMSBackend.Persistence.Extentions
 
         public static IServiceCollection AddSQLRepository(this IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString(nameof(IMSBackendContext));
-            services.AddDbContext<IMSBackendContext>(options =>
+            var connectionString = configuration.GetConnectionString(nameof(IMSEcommerceContext));
+            services.AddDbContext<IMSEcommerceContext>(options =>
             {
                 //UseNpgsql
                 options.UseSqlServer(connectionString,
@@ -44,8 +44,6 @@ namespace IMSBackend.Persistence.Extentions
                   .AddScoped(typeof(IRepository<>), typeof(Repository<>))
                   .AddScoped<IRegistrationOtpRepository, RegistrationOtpRepository>()
                   .AddScoped<IForgotPasswordOtpRepository, ForgotPasswordOtpRepository>()
-                  .AddScoped<IBusinessPitchRepository, BusinessPitchRepository>()
-                  .AddScoped<IPitchPriceRepository, PitchPriceRepository>()
                   .AddScoped<IAccountRepository, AccountRepository>();
         }
     }

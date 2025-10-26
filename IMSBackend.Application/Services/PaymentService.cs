@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using Microsoft.Extensions.Options;
 using HOPRIDESOLUTION.Infrastructure.Settings;
 using IMSBackend.Domain.Shared;
-using IMSBackend.Domain.Entities.Award;
 using IMSBackend.Common.Enums;
 using IMSBackend.Domain.Entities.Transactions;
 

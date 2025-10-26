@@ -10,7 +10,6 @@ using System.ComponentModel.DataAnnotations;
 using IMSBackend.Application.Features.AuthenticationFeature.Queries;
 using IMSBackend.Application.Features.AuthenticationFeature.Commands.Create;
 using IMSBackend.Application.Features.AuthenticationFeature.Commands.Update;
-using IMSBackend.Application.Features.AwardFeatures.Command;
 
 namespace IMSBackend.BackendAPI.Controllers;
 

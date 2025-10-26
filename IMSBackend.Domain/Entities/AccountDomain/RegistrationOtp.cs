@@ -1,5 +1,4 @@
 ﻿using IMSBackend.Common.Common;
-using IMSBackend.Domain.Entities.Award;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IMSBackend.Domain.Entities.Account;

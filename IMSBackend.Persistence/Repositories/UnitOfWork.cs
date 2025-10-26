@@ -1,16 +1,17 @@
 ﻿using IMSBackend.Domain.Shared;
 using IMSBackend.Domain.UseCases;
 using IMSBackend.Persistence.Context;
+using IMSBackend.Persistence.IRepositories.UseCases;
 using IMSBackend.Persistence.Repositories.UseCases;
 
 namespace IMSBackend.Persistence.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly IMSBackendContext _dbContext;
+    private readonly IMSEcommerceContext _dbContext;
     private bool disposed;
 
-    public UnitOfWork(IMSBackendContext dbContext) => _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+    public UnitOfWork(IMSEcommerceContext dbContext) => _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
 
     private IAccountRepository _accountRepository;
@@ -52,6 +53,56 @@ public class UnitOfWork : IUnitOfWork
         }
     }
 
+    private IPaymentRepository _paymentRepository;
+    public IPaymentRepository PaymentRepository
+    {
+        get
+        {
+            if (_paymentRepository == null)
+            {
+                _paymentRepository = new PaymentRepository(_dbContext);
+            }
+            return _paymentRepository;
+        }
+    }
+    private IBankDetailsRepository _bankDetailsRepository;
+    public IBankDetailsRepository BankDetailsRepository
+    {
+        get
+        {
+            if (_bankDetailsRepository == null)
+            {
+                _bankDetailsRepository = new BankDetailsRepository(_dbContext);
+            }
+            return _bankDetailsRepository;
+        }
+    }
+
+    private IVendorCategoryRepository _vendorCategoryRepository;
+    public IVendorCategoryRepository VendorCategoryRepository
+    {
+        get
+        {
+            if (_vendorCategoryRepository == null)
+            {
+                _vendorCategoryRepository = new VendorCategoryRepository(_dbContext);
+            }
+            return _vendorCategoryRepository;
+        }
+    }
+
+    private IVendorsRepository _vendorsRepository;
+    public IVendorsRepository VendorsRepository
+    {
+        get
+        {
+            if (_vendorsRepository == null)
+            {
+                _vendorsRepository = new VendorsRepository(_dbContext);
+            }
+            return _vendorsRepository;
+        }
+    }
     public async Task<int> Save(CancellationToken cancellationToken)
     {
         return await _dbContext.SaveChangesAsync(cancellationToken);
