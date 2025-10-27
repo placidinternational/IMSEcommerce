@@ -140,6 +140,45 @@ public class UnitOfWork : IUnitOfWork
             return _productCategoryRepository;
         }
     }
+
+    private IOrderRepository _orderRepository;
+    public IOrderRepository OrderRepository
+    {
+        get
+        {
+            if (_orderRepository == null)
+            {
+                _orderRepository = new OrderRepository(_dbContext);
+            }
+            return _orderRepository;
+        }
+    }
+
+    private IOrderItemRepository _orderItemRepository;
+    public IOrderItemRepository OrderItemRepository
+    {
+        get
+        {
+            if (_orderItemRepository == null)
+            {
+                _orderItemRepository = new OrderItemRepository(_dbContext);
+            }
+            return _orderItemRepository;
+        }
+    }
+
+    private ICustomerRepository _customerRepository;
+    public ICustomerRepository CustomerRepository
+    {
+        get
+        {
+            if (_customerRepository == null)
+            {
+                _customerRepository = new CustomerRepository(_dbContext);
+            }
+            return _customerRepository;
+        }
+    }
     public async Task<int> Save(CancellationToken cancellationToken)
     {
         return await _dbContext.SaveChangesAsync(cancellationToken);

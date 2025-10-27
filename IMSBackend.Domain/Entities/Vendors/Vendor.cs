@@ -1,6 +1,7 @@
 ﻿using IMSBackend.Common.Common;
 using IMSBackend.Common.Enums;
 using IMSBackend.Domain.Entities.AccountDomain;
+using IMSBackend.Domain.Entities.CustomerDomain;
 using IMSBackend.Domain.Entities.Product;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace IMSBackend.Domain.Entities.Vendors
         public bool IsVerified { get; set; } = false;
         public ICollection<BankDetails> BankDetails { get; set; }
         public ICollection<IMSBackend.Domain.Entities.Product.Product> Product { get; set; }
+        public ICollection<VendorCustomer> CustomerRelationships { get; set; } // New navigation
 
     }
 }

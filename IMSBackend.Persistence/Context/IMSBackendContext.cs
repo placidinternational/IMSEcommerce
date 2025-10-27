@@ -1,6 +1,8 @@
 ﻿using IMSBackend.Domain.Entities.Account;
 using IMSBackend.Domain.Entities.AccountDomain;
+using IMSBackend.Domain.Entities.CustomerDomain;
 using IMSBackend.Domain.Entities.EventDomain;
+using IMSBackend.Domain.Entities.OrderDomain;
 using IMSBackend.Domain.Entities.Product;
 using IMSBackend.Domain.Entities.Transactions;
 using IMSBackend.Domain.Entities.Vendors;
@@ -25,5 +27,8 @@ namespace IMSBackend.Persistence.Context
         public DbSet<Event> Events { get; set; }
         public DbSet<TicketCategory> TicketCategories { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }
