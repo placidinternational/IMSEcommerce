@@ -103,19 +103,19 @@ public class AccountController : BaseController
     /// </summary>
     /// <param name="requestModel"></param>
     /// <returns></returns>
-    [AllowAnonymous]
-    [HttpPost]
-    [Route("Register")]
-    [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> Register(CreateAuthCommand requestModel)
-    {
-        var userResult = await Sender.Send(requestModel);
+    //[AllowAnonymous]
+    //[HttpPost]
+    //[Route("Register")]
+    //[ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
+    //public async Task<IActionResult> Register(CreateAuthCommand requestModel)
+    //{
+    //    var userResult = await Sender.Send(requestModel);
 
-        if (userResult.Succeeded == false)
-            return BadRequest(userResult);
-        else
-            return Ok(userResult);
-    }
+    //    if (userResult.Succeeded == false)
+    //        return BadRequest(userResult);
+    //    else
+    //        return Ok(userResult);
+    //}
 
 
     /// <summary>

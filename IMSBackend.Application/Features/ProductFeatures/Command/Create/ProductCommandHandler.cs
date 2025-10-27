@@ -39,12 +39,13 @@ namespace IMSBackend.Application.Features.ProductFeatures.Command.Create
             await _unitOfWork.ProductRepository.AddAsync(new Domain.Entities.Product.Product
             {
                 Name = request.Name,
-                Price = request.Price,
+                CostPrice = request.Price,
+                DiscountPrice = request.DiscountPrice,
                 ProductCategoryId  = request.ProductCategoryId,
                 Description = request.Description,
                 Image = request.Image,
                 Quantity = request.Quantity,
-                CreatedBy = vendor.Id,
+                VendorId = vendor.Id,
             });
             await _unitOfWork.Save(cancellationToken);
             return await Result<string>.SuccessAsync("Product saved successfully");

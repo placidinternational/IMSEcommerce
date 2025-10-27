@@ -10,7 +10,6 @@ public interface IUnitOfWork : IDisposable
     IForgotPasswordOtpRepository ForgotPasswordOtpRepository { get; }
     IPaymentRepository PaymentRepository { get; }
     IBankDetailsRepository BankDetailsRepository { get; }
-    IVendorCategoryRepository VendorCategoryRepository { get; }
     IVendorsRepository VendorsRepository { get; }
     IProductRepository ProductRepository {  get; }
     IEventRepository EventRepository {  get; }

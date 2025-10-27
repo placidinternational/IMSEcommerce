@@ -1,4 +1,5 @@
 ﻿using IMSBackend.Common;
+using IMSBackend.Common.Enums;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace IMSBackend.Application.Features.VendorFeatures.Command.Create
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public string logo { get; set; }
-        public Guid? CategoryId { get; set; }
+        public VendorTypeEnum CategoryId { get; set; }
         public string Description { get; set; }
     }
 }

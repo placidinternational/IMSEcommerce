@@ -1,5 +1,7 @@
 ﻿using IMSBackend.Common.Common;
+using IMSBackend.Common.Enums;
 using IMSBackend.Domain.Entities.AccountDomain;
+using IMSBackend.Domain.Entities.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +23,12 @@ namespace IMSBackend.Domain.Entities.Vendors
         public Guid? CountryId { get; set; }
         public State State { get; set; }
         public Guid? StateId { get; set; }
-        public VendorCategory Category { get; set; }
-        public Guid? CategoryId { get; set; }
+        public VendorTypeEnum CategoryId { get; set; }
         public string Description { get; set; }
         public bool IsFeatured { get; set; } = false;
         public bool IsVerified { get; set; } = false;
         public ICollection<BankDetails> BankDetails { get; set; }
+        public ICollection<IMSBackend.Domain.Entities.Product.Product> Product { get; set; }
 
     }
 }

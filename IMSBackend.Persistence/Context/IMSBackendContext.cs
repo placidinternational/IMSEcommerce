@@ -18,7 +18,6 @@ namespace IMSBackend.Persistence.Context
         public DbSet<ForgotPasswordOtp> ForgotPasswordOtps { get; set; }
         public DbSet<RegistrationOtp> RegistrationOtps { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
-        public DbSet<VendorCategory> VendorCategories { get; set; }
         public DbSet<BankDetails> BankDetails { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<Country> Country { get; set; }

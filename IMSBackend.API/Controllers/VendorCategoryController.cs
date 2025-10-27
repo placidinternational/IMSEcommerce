@@ -1,7 +1,8 @@
-﻿using IMSBackend.Application.Features.VendorCategoriesFeatures.Command.Create;
+﻿
 using IMSBackend.Application.Features.VendorFeatures.Command.Create;
 using IMSBackend.BackendAPI.Controllers;
 using IMSBackend.Common;
+using IMSBackend.Common.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,17 +16,17 @@ namespace IMSBackend.API.Controllers
         /// <param name="requestModel"></param>
         /// <returns></returns>
 
-        [HttpPost]
-        [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Create(VendorCategoriesCommand query, CancellationToken cancellationToken)
+        [HttpGet]
+        [ProducesResponseType(typeof(Result<VendorTypeEnum>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAll()
         {
 
-            var userResult = await Sender.Send(query);
-            if (userResult.Succeeded == false)
+            var VendorType = Enum.GetValues(typeof(VendorTypeEnum))
+                                  .Cast<VendorTypeEnum>()
+                                  .Select(f => new { Id = (int)f, Name = f.ToString() })
+                                  .ToList();
 
-                return BadRequest(userResult.Messages);
-            else
-                return Ok(userResult);
+            return Ok(VendorType);
         }
     }
 }

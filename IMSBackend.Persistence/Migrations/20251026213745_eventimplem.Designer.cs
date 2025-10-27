@@ -4,6 +4,7 @@ using IMSBackend.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IMSBackend.Persistence.Migrations
 {
     [DbContext(typeof(IMSBackendContext))]
-    partial class IMSBackendContextModelSnapshot : ModelSnapshot
+    [Migration("20251026213745_eventimplem")]
+    partial class eventimplem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -529,8 +532,8 @@ namespace IMSBackend.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
@@ -588,11 +591,46 @@ namespace IMSBackend.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("CountryId");
 
                     b.HasIndex("StateId");
 
                     b.ToTable("Vendors");
+                });
+
+            modelBuilder.Entity("IMSBackend.Domain.Entities.Vendors.VendorCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VendorCategories");
                 });
 
             modelBuilder.Entity("IMSBackend.Domain.Entities.Account.RegistrationOtp", b =>
@@ -635,7 +673,7 @@ namespace IMSBackend.Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("IMSBackend.Domain.Entities.Vendors.Vendor", "Vendor")
-                        .WithMany("Product")
+                        .WithMany()
                         .HasForeignKey("VendorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -658,6 +696,10 @@ namespace IMSBackend.Persistence.Migrations
 
             modelBuilder.Entity("IMSBackend.Domain.Entities.Vendors.Vendor", b =>
                 {
+                    b.HasOne("IMSBackend.Domain.Entities.Vendors.VendorCategory", "Category")
+                        .WithMany("Vendor")
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("IMSBackend.Domain.Entities.AccountDomain.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId");
@@ -665,6 +707,8 @@ namespace IMSBackend.Persistence.Migrations
                     b.HasOne("IMSBackend.Domain.Entities.AccountDomain.State", "State")
                         .WithMany()
                         .HasForeignKey("StateId");
+
+                    b.Navigation("Category");
 
                     b.Navigation("Country");
 
@@ -684,8 +728,11 @@ namespace IMSBackend.Persistence.Migrations
             modelBuilder.Entity("IMSBackend.Domain.Entities.Vendors.Vendor", b =>
                 {
                     b.Navigation("BankDetails");
+                });
 
-                    b.Navigation("Product");
+            modelBuilder.Entity("IMSBackend.Domain.Entities.Vendors.VendorCategory", b =>
+                {
+                    b.Navigation("Vendor");
                 });
 #pragma warning restore 612, 618
         }

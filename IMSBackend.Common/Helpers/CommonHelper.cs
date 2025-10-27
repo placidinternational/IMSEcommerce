@@ -182,5 +182,18 @@ public class CommonHelper
         }
         return hash;
     }
+    public static decimal CalculateDiscountPercentage(decimal costPrice, decimal discountPrice)
+    {
+        if (costPrice <= 0)
+            throw new ArgumentException("Cost price must be greater than zero.", nameof(costPrice));
+
+        if (discountPrice < 0)
+            throw new ArgumentException("Discount price cannot be negative.", nameof(discountPrice));
+
+        var discountAmount = costPrice - discountPrice;
+        var percentageOff = (discountAmount / costPrice) * 100;
+
+        return Math.Round(percentageOff, 2);
+    }
 }
 

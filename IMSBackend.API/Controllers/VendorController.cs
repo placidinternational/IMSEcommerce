@@ -1,6 +1,9 @@
 ﻿using IMSBackend.Application.Dtos.Auth;
+using IMSBackend.Application.Dtos.ProductDto;
 using IMSBackend.Application.Features.AuthenticationFeature.Queries;
+using IMSBackend.Application.Features.ProductFeatures.Querries;
 using IMSBackend.Application.Features.VendorFeatures.Command.Create;
+using IMSBackend.Application.Features.VendorFeatures.Querries;
 using IMSBackend.BackendAPI.Controllers;
 using IMSBackend.Common;
 using Microsoft.AspNetCore.Authorization;
@@ -50,6 +53,34 @@ namespace IMSBackend.API.Controllers
                 return BadRequest(userResult.Messages);
             else
                 return Ok(userResult);
+        }
+
+        /// <summary>
+        /// This endpoint is used to get all featured vendors
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [HttpGet("Featured")]
+        [ProducesResponseType(typeof(Result<GetProductResponse>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllFeaturedVendors([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string? SearchParam = null)
+        {
+            var query = new GetAllFeaturedVendorsQuery { PageNumber = pageNumber, PageSize = pageSize};
+            var result = await Sender.Send(query);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// This endpoint is used to get vendor shop
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+        [HttpGet("GetAllVendorShop")]
+        [ProducesResponseType(typeof(Result<GetProductResponse>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllVendorShop([FromQuery] Guid VendorId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string? SearchParam = null)
+        {
+            var query = new GetVendorShopQuery {VendorId = VendorId, PageNumber = pageNumber, PageSize = pageSize, SearchParam = SearchParam };
+            var result = await Sender.Send(query);
+            return Ok(result);
         }
     }
 }

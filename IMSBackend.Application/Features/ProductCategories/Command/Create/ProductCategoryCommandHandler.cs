@@ -20,7 +20,7 @@ namespace IMSBackend.Application.Features.ProductCategories.Command.Create
         }
         public async Task<Result<string>> Handle(ProductCategoryCommand request, CancellationToken cancellationToken)
         {
-            var existingCategory = await _unitOfWork.VendorCategoryRepository.FindByFirstOrDefaultAsync(vc => vc.Name == request.Name, cancellationToken);
+            var existingCategory = await _unitOfWork.ProductCategoryRepository.FindByFirstOrDefaultAsync(vc => vc.Name == request.Name, cancellationToken);
 
             if (existingCategory != null)
             {

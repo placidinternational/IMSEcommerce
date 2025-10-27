@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace IMSBackend.Application.Dtos.VendorsDto
+{
+    public class GetVendorShopResponse
+    {
+        public string ProductName { get; set; }
+        public string Image { get; set; }
+        public string Rating { get; set; }
+        public string Category { get; set; }
+        public decimal DiscountPrice { get; set; }
+        public decimal CostPrice { get; set; }
+        public decimal PercentageOff { get; set; }
+    }
+}

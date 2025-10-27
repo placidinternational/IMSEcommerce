@@ -78,19 +78,6 @@ public class UnitOfWork : IUnitOfWork
         }
     }
 
-    private IVendorCategoryRepository _vendorCategoryRepository;
-    public IVendorCategoryRepository VendorCategoryRepository
-    {
-        get
-        {
-            if (_vendorCategoryRepository == null)
-            {
-                _vendorCategoryRepository = new VendorCategoryRepository(_dbContext);
-            }
-            return _vendorCategoryRepository;
-        }
-    }
-
     private IVendorsRepository _vendorsRepository;
     public IVendorsRepository VendorsRepository
     {
