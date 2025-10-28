@@ -31,7 +31,27 @@ namespace IMSBackend.Persistence.Context
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<VendorCustomer> VendorCustomers { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(o => o.Order)
+                .WithMany(o => o.Items)
+                .HasForeignKey(o => o.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(o => o.Product)
+                .WithMany()
+                .HasForeignKey(o => o.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(o => o.Vendor)
+                .WithMany()
+                .HasForeignKey(o => o.VendorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+        }
+
     }
-
-
 }

@@ -888,7 +888,7 @@ namespace IMSBackend.Persistence.Migrations
                     b.HasOne("IMSBackend.Domain.Entities.Vendors.Vendor", "Vendor")
                         .WithMany()
                         .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Order");
