@@ -9,6 +9,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using IMSBackend.Persistence.Jwt;
 using MediatR;
+using IMSBackend.Application.Features.CheckoutFeatures;
 
 namespace IMSBackend.Application.Extensions;
 public static class IServiceCollectionExtensions

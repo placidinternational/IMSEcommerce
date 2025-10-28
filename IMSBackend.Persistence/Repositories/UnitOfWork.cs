@@ -3,6 +3,9 @@ using IMSBackend.Domain.UseCases;
 using IMSBackend.Persistence.Context;
 using IMSBackend.Persistence.IRepositories.UseCases;
 using IMSBackend.Persistence.Repositories.UseCases;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
 
 namespace IMSBackend.Persistence.Repositories;
 
@@ -14,6 +17,10 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(IMSBackendContext dbContext) => _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
 
+    public Task<IDbContextTransaction> BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default)
+    {
+        return _dbContext.Database.BeginTransactionAsync(isolationLevel, cancellationToken);
+    }
     private IAccountRepository _accountRepository;
     public IAccountRepository AccountRepository
     {
@@ -177,6 +184,32 @@ public class UnitOfWork : IUnitOfWork
                 _customerRepository = new CustomerRepository(_dbContext);
             }
             return _customerRepository;
+        }
+    }
+
+    private IVendorCustomerRepository _vendorCustomerRepository;
+    public IVendorCustomerRepository VendorCustomerRepository
+    {
+        get
+        {
+            if (_vendorCustomerRepository == null)
+            {
+                _vendorCustomerRepository = new VendorCustomerRepository(_dbContext);
+            }
+            return _vendorCustomerRepository;
+        }
+    }
+
+    private IBookedEventRepository _bookedEventRepository;
+    public IBookedEventRepository BookedEventRepository
+    {
+        get
+        {
+            if (_bookedEventRepository == null)
+            {
+                _bookedEventRepository = new BookedEventRepository(_dbContext);
+            }
+            return _bookedEventRepository;
         }
     }
     public async Task<int> Save(CancellationToken cancellationToken)

@@ -8,7 +8,8 @@ namespace IMSBackend.Application.Dtos.OrderDto
 {
     public class CheckoutRequestDto
     {
-        public Guid CustomerId { get; set; } // Include customer ID in the request
+        public Guid CustomerId { get; set; } 
         public List<CartItemDto> CartItems { get; set; } = new List<CartItemDto>();
+        public string ReferenceNumber { get; set; }
     }
 }

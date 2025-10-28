@@ -35,6 +35,7 @@ public static class IServiceCollectionExtensions
 
         services.AddOptions<CloudinarySettings>()
          .BindConfiguration(nameof(CloudinarySettings));
+        services.AddOptions<CheckoutSettings>() .BindConfiguration(nameof(CheckoutSettings));
 
 
     }

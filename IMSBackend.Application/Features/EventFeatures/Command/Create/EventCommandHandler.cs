@@ -41,7 +41,6 @@ namespace IMSBackend.Application.Features.EventFeatures.Command.Create
                     Image= request.Image,
                     VenueName = request.VenueName,
                     VenueAddress = request.VenueAddress,
-                    TotalCapacity= request.TotalCapacity,
                     CreatedBy = vendor.Id,
                     TicketCategories = request.TicketCategories.Select(x=>new TicketCategory                    {
                         Name = x.Name,

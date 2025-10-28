@@ -33,7 +33,7 @@ namespace IMSBackend.Application.Features.ProductFeatures.Command.Create
 
             if (existingCategory != null)
             {
-                return await Result<string>.FailureAsync("A product with this exact name already exist for this vendot");
+                return await Result<string>.FailureAsync("A product with this exact name already exist for this vendor");
             }
 
             await _unitOfWork.ProductRepository.AddAsync(new Domain.Entities.Product.Product

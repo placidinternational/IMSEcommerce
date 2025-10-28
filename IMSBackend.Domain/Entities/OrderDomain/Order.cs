@@ -18,11 +18,11 @@ namespace IMSBackend.Domain.Entities.OrderDomain
         // --- Financial Breakdown ---
         [Column(TypeName = "decimal(18,2)")]
         public decimal Subtotal { get; set; } // Total price before tax/fees
-
+        [Column(TypeName = "decimal(18,2)")]
         public decimal TaxRate { get; set; } // The rate applied (e.g., 0.05 for 5%)
         [Column(TypeName = "decimal(18,2)")]
         public decimal TaxAmount { get; set; }
-
+        [Column(TypeName = "decimal(18,2)")]
         public decimal PaymentFeeRate { get; set; } // The rate applied for gateway fees
         [Column(TypeName = "decimal(18,2)")]
         public decimal FeeAmount { get; set; }

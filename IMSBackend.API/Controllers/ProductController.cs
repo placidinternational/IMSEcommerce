@@ -4,6 +4,7 @@ using IMSBackend.Application.Features.ProductFeatures.Command.Create;
 using IMSBackend.Application.Features.ProductFeatures.Querries;
 using IMSBackend.BackendAPI.Controllers;
 using IMSBackend.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace IMSBackend.API.Controllers
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
-
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(Result<string>), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create(ProductCommand query, CancellationToken cancellationToken)
@@ -36,6 +37,7 @@ namespace IMSBackend.API.Controllers
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(Result<GetProductResponse>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllProducts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string? SearchParam = null)

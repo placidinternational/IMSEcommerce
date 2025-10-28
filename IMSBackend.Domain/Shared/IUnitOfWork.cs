@@ -1,10 +1,13 @@
 ﻿using IMSBackend.Domain.UseCases;
 using IMSBackend.Persistence.IRepositories.UseCases;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
 
 namespace IMSBackend.Domain.Shared;
 
 public interface IUnitOfWork : IDisposable
 {
+    Task<IDbContextTransaction> BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default);
     IAccountRepository AccountRepository { get; }
     IRegistrationOtpRepository RegistrationOtpRepository { get; }
     IForgotPasswordOtpRepository ForgotPasswordOtpRepository { get; }
@@ -15,5 +18,10 @@ public interface IUnitOfWork : IDisposable
     IEventRepository EventRepository {  get; }
     ITicketCategoryRepository TicketCategoryRepository {  get; }
     IProductCategoryRepository ProductCategoryRepository {  get; }
+    IOrderRepository OrderRepository {  get; }
+    IOrderItemRepository OrderItemRepository { get; }
+    ICustomerRepository CustomerRepository { get; }
+    IVendorCustomerRepository VendorCustomerRepository {  get; }
+    IBookedEventRepository BookedEventRepository {  get; }
     Task<int> Save(CancellationToken cancellationToken);
 }

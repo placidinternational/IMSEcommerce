@@ -17,6 +17,7 @@ namespace IMSBackend.Domain.Entities.Product
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal CostPrice { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal DiscountPrice { get; set; }
         public string Description { get; set; }
         public int Quantity { get; set; }
