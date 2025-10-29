@@ -167,7 +167,8 @@ namespace IMSBackend.Application.Features.CheckoutFeatures
                         TicketNumber = $"{ticketData.EventTitle.Substring(0, 2).ToUpper()}-{ticketData.CategoryName.Substring(0, 2).ToUpper()}-{Guid.NewGuid().ToString().Substring(0, 8)}" // Simple unique identifier
                     };
 
-                   await _unitOfWork.BookedEventRepository.AddAsync(bookedTicket);
+                    await _unitOfWork.BookedEventRepository.AddAsync(bookedTicket);
+                   
                 }
 
                 // 5. Update Vendor-Customer CRM Relationship
@@ -187,11 +188,13 @@ namespace IMSBackend.Application.Features.CheckoutFeatures
                             CustomerId = customerId,
                             LastPurchaseDate = now
                         });
+                        await _unitOfWork.Save(cancellationToken);
                     }
                     else
                     {
                         existingRelationship.LastPurchaseDate = now;
                         await _unitOfWork.VendorCustomerRepository.Update(existingRelationship);
+                   
                     }
                 }
 

@@ -44,7 +44,7 @@ internal sealed class ValidateLoginQueryHandler : IRequestHandler<ValidateLoginQ
     {
         try
         {
-           
+            var vendortype ="";
             var user = await _unitOfWork.AccountRepository.Login(query.Email, query.Password, cancellationToken);
 
             if (user is null)
@@ -64,6 +64,11 @@ internal sealed class ValidateLoginQueryHandler : IRequestHandler<ValidateLoginQ
             await _unitOfWork.Save(cancellationToken);
 
             //await _jobTestService.SendLogin(query.IP, getUser.FullName, query.Browser, DateTime.UtcNow, getUser.EmailAddress, cancellationToken);
+            if(getUser.UserType == UserTypeEnum.Vendor)
+            {
+                var type = await _unitOfWork.VendorsRepository.GetSingleByExpression(x => x.AccountId == getUser.Id, cancellationToken);
+                vendortype = type.CategoryId.ToString();
+            }
 
             string token;
             List<PermissionObject> permissions = null;
@@ -77,6 +82,7 @@ internal sealed class ValidateLoginQueryHandler : IRequestHandler<ValidateLoginQ
                 FirstName = getUser.FullName,
                 PhoneNumber = getUser.PhoneNumber,
                 UserType = getUser.UserType.ToString(),
+                Category = vendortype
  
             }, "Login successful");
         }

@@ -1,5 +1,5 @@
 ﻿using IMSBackend.Application.Contracts;
-using IMSBackend.Application.Features.EventFeatures.Querries;
+using IMSBackend.Application.Dtos.EventDto;
 using IMSBackend.Common;
 using IMSBackend.Domain.Shared;
 using MediatR;
@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace IMSBackend.Application.Dtos.EventDto
+namespace IMSBackend.Application.Features.EventFeatures.Querries
 {
     public class GetVendorEventsDashboardQueryHandler : IRequestHandler<GetVendorEventsDashboardQuery, Result<IEnumerable<EventDashboardItemDto>>>
     {
@@ -37,7 +37,7 @@ namespace IMSBackend.Application.Dtos.EventDto
 
             if (!events.Any())
             {
-                return null;
+                return await Result<IEnumerable<EventDashboardItemDto>>.FailureAsync("No data available");
             }
 
             var eventIds = events.Select(e => e.Id).ToList();
@@ -106,10 +106,6 @@ namespace IMSBackend.Application.Dtos.EventDto
 
             return await Result<IEnumerable<EventDashboardItemDto>>.SuccessAsync(orderedItems);
         }
-
-     
-
-
 
         private string FormatCurrency(decimal amount)
         {

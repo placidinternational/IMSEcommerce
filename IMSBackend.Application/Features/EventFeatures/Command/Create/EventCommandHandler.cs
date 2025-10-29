@@ -42,14 +42,14 @@ namespace IMSBackend.Application.Features.EventFeatures.Command.Create
                     VenueName = request.VenueName,
                     VenueAddress = request.VenueAddress,
                     CreatedBy = vendor.Id,
+                    VendorId = vendor.Id,
                     TicketCategories = request.TicketCategories.Select(x=>new TicketCategory                    {
                         Name = x.Name,
                         Price = x.Price,
                         Capacity = x.Capacity,
-                        
                     }).ToList()
                 });
-
+                await _unitOfWork.Save(cancellationToken);
                 return await Result<string>.SuccessAsync("Event Added successfully");
             }
             catch (Exception ex) 

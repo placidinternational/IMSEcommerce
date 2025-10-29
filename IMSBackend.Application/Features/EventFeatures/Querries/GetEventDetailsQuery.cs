@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace IMSBackend.Application.Features.EventFeatures.Querries
 {
-    public class GetVendorEventsDashboardQuery : IRequest<Result<IEnumerable<EventDashboardItemDto>>>
+    public class GetEventDetailsQuery : IRequest<Result<EventDetailsDto>>
     {
-        //public int PageNumber { get; set; } = 10;
-        //public int PageSize { get; set; } = 1;
-        //public string SearchParam { get; set; } = null;
+        public Guid EventId { get; set; }
     }
 }

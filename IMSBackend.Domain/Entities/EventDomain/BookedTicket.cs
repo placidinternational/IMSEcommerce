@@ -1,6 +1,7 @@
 ﻿using IMSBackend.Common.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace IMSBackend.Domain.Entities.EventDomain
         public Guid VendorId { get; set; } 
 
         // Ticket Design / Receipt fields
-        public string TicketNumber { get; set; } // Unique identifier for the specific ticket instance (e.g., QR Code value)
+        public string TicketNumber { get; set; } 
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }
 
@@ -27,6 +28,7 @@ namespace IMSBackend.Domain.Entities.EventDomain
         public DateTime EventTime { get; set; }
 
         public int Quantity { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
         public decimal UnitPrice { get; set; }
         public DateTime PurchaseDate { get; set; }
     }

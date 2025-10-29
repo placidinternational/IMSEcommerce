@@ -31,6 +31,7 @@ namespace IMSBackend.Persistence.Context
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<VendorCustomer> VendorCustomers { get; set; }
+        public DbSet<BookedTicket> BookedTickets { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OrderItem>()

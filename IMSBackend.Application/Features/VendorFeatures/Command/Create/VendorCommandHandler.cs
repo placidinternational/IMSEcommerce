@@ -71,6 +71,7 @@ namespace IMSBackend.Application.Features.VendorFeatures.Command.Create
                     Logo = request.logo,
                     CategoryId = request.CategoryId,
                     Description = request.Description,
+                    PassTaxToCustomer = request.PassTaxToCustomer
                 };
                 var data = await _unitOfWork.VendorsRepository.AddAsync(vendor);
                 await _unitOfWork.Save(cancellationToken);

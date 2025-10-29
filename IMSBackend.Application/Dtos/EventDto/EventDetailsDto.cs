@@ -1,15 +1,14 @@
-﻿using IMSBackend.Common;
-using MediatR;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMSBackend.Application.Features.EventFeatures.Command.Create
+namespace IMSBackend.Application.Dtos.EventDto
 {
-    public class EventCommand : IRequest<Result<string>>
+    public class EventDetailsDto
     {
+        public Guid EventId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
@@ -17,13 +16,8 @@ namespace IMSBackend.Application.Features.EventFeatures.Command.Create
         public DateTime EventTime { get; set; }
         public string VenueName { get; set; }
         public string VenueAddress { get; set; }
-        public List<TicketCategoryRequest> TicketCategories { get; set; }
-    }
-    public class TicketCategoryRequest
-    {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public int Capacity { get; set; }
-
+        public bool PassTaxToCustomer { get; set; } // New field from Vendor table
+        public int TotalCategoriesCount { get; set; }
+        public List<TicketCategoryDetailsDto> TicketCategories { get; set; } = new List<TicketCategoryDetailsDto>();
     }
 }

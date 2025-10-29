@@ -9,16 +9,15 @@ public class LoginResponseDto
     public string RefreshToken { get; set; }
     public int ExpiresIn { get; set; }
     public string Email { get; set; }
-    public bool IsRegistrationCompleted { get; set; }
     public Guid UserId { get; set; }
-    public string AgentNumber { get; set; }
+    public string Category { get; set; }
     public string CompanyName { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string  Address { get; set; }
     public string PhoneNumber { get; set; }
     public string UserType { get; set; }
-    public List<PermissionObject>? permissionObjects { get; set; }
+   // public List<PermissionObject>? permissionObjects { get; set; }
 
 }
 
