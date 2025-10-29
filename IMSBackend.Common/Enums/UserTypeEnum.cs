@@ -10,6 +10,6 @@ namespace IMSBackend.Common.Enums
     {
         Vendor =1,
         Admin = 2,
-        Pitch = 3
+        Customer = 3
     }
 }

@@ -4,6 +4,7 @@ using IMSBackend.Application.Features.EventFeatures.Querries;
 using IMSBackend.Application.Features.ProductFeatures.Command.Create;
 using IMSBackend.BackendAPI.Controllers;
 using IMSBackend.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,8 +31,34 @@ namespace IMSBackend.API.Controllers
                 return Ok(userResult);
         }
 
+
         // <summary>
-        /// This is the endpoint to create events 
+        /// This is the endpoint to get all events 
+        /// </summary>
+        /// <param name="requestModel"></param>
+        /// <returns></returns>
+
+        [HttpGet("GetAllEvent")]
+        [ProducesResponseType(typeof(Result<VendorEventsDashboardDto>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetAllEvents([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string? SearchParam = null)
+        {
+            var query = new GetAllEventsQuery 
+            { 
+                PageNumber = pageNumber,
+                PageSize = pageSize,
+                SearchParam = SearchParam
+            };
+            var userResult = await Sender.Send(query);
+            if (userResult.Succeeded == false)
+
+                return BadRequest(userResult.Messages);
+            else
+                return Ok(userResult);
+        }
+
+
+        // <summary>
+        /// This is the endpoint to get events by vendors 
         /// </summary>
         /// <param name="requestModel"></param>
         /// <returns></returns>

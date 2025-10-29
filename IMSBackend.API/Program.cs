@@ -68,8 +68,8 @@ builder.Services.AddSwaggerGen(option =>
 
     option.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Ibadan Market Square Core API v1",
-        Description = "Ibadan Market Square Core API Version 1",
+        Title = "Trada Core API v1",
+        Description = "Trada Core API Version 1",
         Version = "v1.0"
     });
     option.OperationFilter<ApiHeaderFilter>();
@@ -126,7 +126,6 @@ app.Use(async (context, next) =>
         context.Response.Headers.Add("X-Xss-Protection", "1");
         context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';");
     }
-
     await next();
 });
 

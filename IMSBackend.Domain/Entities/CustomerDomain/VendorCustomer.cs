@@ -7,7 +7,6 @@ namespace IMSBackend.Domain.Entities.CustomerDomain
     {
         public Guid VendorId { get; set; }
         public Vendor Vendor { get; set; }
-
         public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }
 

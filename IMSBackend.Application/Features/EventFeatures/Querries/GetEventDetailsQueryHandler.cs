@@ -61,6 +61,13 @@ namespace IMSBackend.Application.Features.EventFeatures.Querries
                 })
                 .ToDictionaryAsync(x => x.TicketCategoryId, x => x.TotalQuantitySold, cancellationToken);
 
+            //Fetch company details
+            var company = new CompanyDetails
+            {
+                Name = eventEntity.Vendor.CompanyName,
+                Email = eventEntity.Vendor.EmailAddress,
+            };
+
             // 3. Map to DTO
             var dto = new EventDetailsDto
             {
@@ -72,6 +79,7 @@ namespace IMSBackend.Application.Features.EventFeatures.Querries
                 EventTime = eventEntity.EventTime,
                 VenueName = eventEntity.VenueName,
                 VenueAddress = eventEntity.VenueAddress,
+                CompanyDetails = company,
                 PassTaxToCustomer = passTaxToCustomer,
                 TotalCategoriesCount = eventEntity.TicketCategories.Count,
             };

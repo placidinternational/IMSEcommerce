@@ -18,6 +18,12 @@ namespace IMSBackend.Application.Dtos.EventDto
         public string VenueAddress { get; set; }
         public bool PassTaxToCustomer { get; set; } // New field from Vendor table
         public int TotalCategoriesCount { get; set; }
+        public CompanyDetails CompanyDetails { get; set; }
         public List<TicketCategoryDetailsDto> TicketCategories { get; set; } = new List<TicketCategoryDetailsDto>();
+    }
+    public class CompanyDetails
+    {
+        public string Email { get; set; }
+        public string Name { get; set; }
     }
 }
