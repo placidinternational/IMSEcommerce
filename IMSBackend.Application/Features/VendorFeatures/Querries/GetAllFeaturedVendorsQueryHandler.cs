@@ -21,7 +21,7 @@ namespace IMSBackend.Application.Features.VendorFeatures.Querries
         }
         public async Task<PaginatedResult<GetAllFeaturedVendorsResponse>> Handle(GetAllFeaturedVendorsQuery request, CancellationToken cancellationToken)
         {
-            var query = _unitOfWork.VendorsRepository.GetQueryable().Where(x=>x.IsFeatured && x.IsVerified);
+            var query = _unitOfWork.VendorsRepository.GetQueryable().Where(x=>x.IsFeatured && x.IsVerified && x.CategoryId == Common.Enums.VendorTypeEnum.BusinessOwner);
 
             var productsQuery = _unitOfWork.ProductRepository.GetQueryable();
 
