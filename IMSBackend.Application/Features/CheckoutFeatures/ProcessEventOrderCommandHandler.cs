@@ -149,7 +149,7 @@ namespace IMSBackend.Application.Features.CheckoutFeatures
                     var bookedTicket = new BookedTicket
                     {
                         OrderId = orderId,
-                        CustomerId = request.CustomerId,
+                        CustomerEmail = request.CustomerEmail,
                         VendorId = ticketData.VendorId,
                         TicketCategoryId = itemDto.TicketCategoryId,
                         Quantity = itemDto.Quantity,
@@ -158,7 +158,6 @@ namespace IMSBackend.Application.Features.CheckoutFeatures
 
                         // Populate new ticket design fields
                         CustomerName = request.CustomerName,
-                        CustomerEmail = request.CustomerEmail,
                         EventTitle = ticketData.EventTitle,
                         TicketCategoryName = ticketData.CategoryName,
                         VenueName = ticketData.VenueName,
@@ -171,32 +170,17 @@ namespace IMSBackend.Application.Features.CheckoutFeatures
                    
                 }
 
-                // 5. Update Vendor-Customer CRM Relationship
-                var customerId = request.CustomerId;
-                var now = DateTime.UtcNow;
-
                 foreach (var vendorId in vendorIdsInOrder)
                 {
-                    var existingRelationship = _unitOfWork.VendorCustomerRepository.GetQueryable()
-                        .FirstOrDefault(vc => vc.VendorId == vendorId && vc.CustomerId == customerId);
-
-                    if (existingRelationship == null)
+                    await _unitOfWork.VendorCustomerRepository.AddAsync(new VendorCustomer
                     {
-                       await _unitOfWork.VendorCustomerRepository.AddAsync(new VendorCustomer
-                        {
-                            VendorId = vendorId,
-                            CustomerId = customerId,
-                            LastPurchaseDate = now
-                        });
-                        await _unitOfWork.Save(cancellationToken);
-                    }
-                    else
-                    {
-                        existingRelationship.LastPurchaseDate = now;
-                        await _unitOfWork.VendorCustomerRepository.Update(existingRelationship);
-                   
-                    }
+                        VendorId = vendorId,
+                        CustomerEmail = request.CustomerEmail,
+                        LastPurchaseDate = DateTime.UtcNow
+                    });
                 }
+                await _unitOfWork.Save(cancellationToken);
+        
 
                 // 6. Final Save and Commit
                 await _unitOfWork.Save(cancellationToken);

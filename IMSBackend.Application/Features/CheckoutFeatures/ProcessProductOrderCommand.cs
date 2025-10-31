@@ -16,7 +16,7 @@ namespace IMSBackend.Application.Features.CheckoutFeatures
     }
 public class ProcessCheckoutCommand
     {
-        public Guid CustomerId { get; set; }
+        public string CustomerEmail { get; set; }
         public List<CartItemDto> CartItems {  get; set; }
         public string ReferenceNumber {  get; set; }
     }

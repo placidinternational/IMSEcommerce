@@ -138,7 +138,7 @@ namespace IMSBackend.Application.Features.CheckoutFeatures
                 var newOrder = new Order
                 {
                     Items = new List<OrderItem>(),
-                    CustomerId = checkoutDto.CustomerId,
+                    CustomerEmail = checkoutDto.CustomerEmail,
                     TaxRate = _settings.TaxRate,
                     PaymentFeeRate = _settings.PaymentGatewayCharges,
                     Subtotal = subtotal,
@@ -175,19 +175,19 @@ namespace IMSBackend.Application.Features.CheckoutFeatures
                 await _unitOfWork.OrderRepository.AddAsync(newOrder);
 
                 // Update Vendor-Customer CRM Relationship
-                var customerId = newOrder.CustomerId;
+                var customerEmail = newOrder.CustomerEmail;
                 var now = DateTime.UtcNow;
 
                 foreach (var vendorId in vendorIdsInOrder)
                 {
-                    var existingRelationship = await _unitOfWork.VendorCustomerRepository.FindByFirstOrDefaultAsync(vc => vc.VendorId == vendorId && vc.CustomerId == customerId, cancellationToken);
+                    var existingRelationship = await _unitOfWork.VendorCustomerRepository.FindByFirstOrDefaultAsync(vc => vc.VendorId == vendorId && vc.CustomerEmail == customerEmail, cancellationToken);
 
                     if (existingRelationship == null)
                     {
                        await _unitOfWork.VendorCustomerRepository.AddAsync(new VendorCustomer
                         {
                             VendorId = vendorId,
-                            CustomerId = customerId,
+                            CustomerEmail = customerEmail,
                             LastPurchaseDate = now
                         });
                     }

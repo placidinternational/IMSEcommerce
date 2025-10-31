@@ -12,9 +12,8 @@ namespace IMSBackend.Domain.Entities.OrderDomain
     public class Order : BaseEntity
     {
         public DateTime OrderDate { get; set; } = DateTime.UtcNow;
-        public Guid CustomerId { get; set; }
-        public Customer Customer { get; set; } 
 
+        public string CustomerEmail { get; set; }
         // --- Financial Breakdown ---
         [Column(TypeName = "decimal(18,2)")]
         public decimal Subtotal { get; set; } // Total price before tax/fees

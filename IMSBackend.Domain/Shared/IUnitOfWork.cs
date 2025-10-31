@@ -8,6 +8,7 @@ namespace IMSBackend.Domain.Shared;
 public interface IUnitOfWork : IDisposable
 {
     Task<IDbContextTransaction> BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken = default);
+    IExecutionStrategy CreateExecutionStrategy();
     IAccountRepository AccountRepository { get; }
     IRegistrationOtpRepository RegistrationOtpRepository { get; }
     IForgotPasswordOtpRepository ForgotPasswordOtpRepository { get; }

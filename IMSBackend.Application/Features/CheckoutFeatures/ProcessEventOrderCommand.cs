@@ -12,7 +12,6 @@ namespace IMSBackend.Application.Features.CheckoutFeatures
     public class ProcessEventOrderCommand : IRequest<Result<string>>
     {
         public List<TicketBookingDto> TicketBookingDto { get; set; }
-        public Guid CustomerId { get; set; }
         public string ReferenceNumber { get; set; }
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }

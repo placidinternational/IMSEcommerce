@@ -234,4 +234,9 @@ public class UnitOfWork : IUnitOfWork
         //dispose unmanaged resources
         disposed = true;
     }
+
+      public IExecutionStrategy CreateExecutionStrategy()
+    {
+        return _dbContext.Database.CreateExecutionStrategy();
+    }
 }

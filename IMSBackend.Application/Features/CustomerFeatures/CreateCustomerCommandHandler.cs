@@ -67,13 +67,16 @@ namespace IMSBackend.Application.Features.CustomerFeatures
                         return await Result<string>.SuccessAsync("You have account with us but Customer Created Successfully");
                     }
                     CreatePasswordHash(request.Password, out passwordHash, out passwordSalt);
-                    var user = _mapper.Map<Account>(request);
-                    user.PasswordSalt = passwordSalt;
-                    user.EmailAddress = request.Email;
-                    user.FullName = request.Name;
-                    user.UserType = UserTypeEnum.Customer;
-                    user.StatusEnum = StatusEnum.Active;
-                    user.PasswordHashed = passwordHash;
+                    //var user = _mapper.Map<Account>(request);
+                    var user = new Account 
+                    {
+                        PasswordSalt = passwordSalt,
+                        EmailAddress = request.Email,
+                        FullName = request.Name,
+                        UserType = UserTypeEnum.Customer,
+                        StatusEnum = StatusEnum.Active,
+                        PasswordHashed = passwordHash,
+                    };
                     await _unitOfWork.AccountRepository.AddAsync(user);
                     await _unitOfWork.Save(cancellationToken);
                     return await Result<string>.SuccessAsync("Customer created successfully");
