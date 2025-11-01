@@ -36,7 +36,7 @@ namespace IMSBackend.Application.Services
                     Headers =
             {
                 { "accept", "application/json" },
-                { "Authorization", $"Bearer FLWSECK-6a7475d21c6c3d38907d11a8b0e2b3b0-198e5ceecebvt-X" }
+                { "Authorization", $"Bearer FLWSECK_TEST-ad4dffd9eb56d6c5b05fd394c8b99245-X" }
             },
                 };
 

@@ -11,7 +11,8 @@ namespace IMSBackend.Domain.Entities.EventDomain
     public class BookedTicket : BaseEntity
     {
         public Guid OrderId { get; set; } 
-        public Guid VendorId { get; set; } 
+        public Guid VendorId { get; set; }
+        public Guid CustomerId { get; set; }
 
         // Ticket Design / Receipt fields
         public string TicketNumber { get; set; } 

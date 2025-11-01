@@ -235,7 +235,7 @@ public class UnitOfWork : IUnitOfWork
         disposed = true;
     }
 
-      public IExecutionStrategy CreateExecutionStrategy()
+      public IExecutionStrategy GetExecutionStrategy()
     {
         return _dbContext.Database.CreateExecutionStrategy();
     }

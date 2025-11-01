@@ -7,7 +7,7 @@ namespace IMSBackend.Domain.Entities.CustomerDomain
     {
         public Guid VendorId { get; set; }
         public Vendor Vendor { get; set; }
-        public string CustomerEmail { get; set; }
+        public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }
 
         public DateTime LastPurchaseDate { get; set; } = DateTime.UtcNow;
